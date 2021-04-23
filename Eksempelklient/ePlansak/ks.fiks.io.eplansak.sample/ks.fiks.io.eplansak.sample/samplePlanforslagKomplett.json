@@ -1,0 +1,37 @@
+{
+  "arealplanId": {
+    "administrativEnhet": "0821",
+    "planidentifikasjon": "01_27_1988"
+  },
+  "planstatus": {
+    "kodeverdi": "2",
+    "kodebeskrivelse": "Planforslag"
+  },
+  "planbehandlingstype": {
+    "kodeverdi": "10",
+    "kodebeskrivelse": "Planforslag tatt til behandling"
+  },
+  "saksnummer": {
+    "saksaar": "2019",
+    "sakssekvensnummer": "2234480"
+  },
+  "mottakAvPlanforslag": "2019-06-05",
+  "komplettPlanforslag": "2019-06-05",
+  "vedlegg": [
+    {
+      "dokumenttype": "PLANBESKR",
+      "filnavn": "Breisås Sør_Planbeskrivelse.pdf"
+    },
+    {
+      "dokumenttype": "PLANKART",
+      "filnavn": "06_36_2012_plankart.pdf"
+    },
+    {
+      "dokumenttype": "PLANBEST",
+      "filnavn": "06_36_2012_føresegner.pdf"
+    }
+  ]
+}
+
+
+

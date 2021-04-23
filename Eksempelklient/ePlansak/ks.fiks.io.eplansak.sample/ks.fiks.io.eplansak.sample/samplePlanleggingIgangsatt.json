@@ -1,0 +1,28 @@
+{
+  "arealplanId": {
+    "administrativEnhet": "0821",
+    "planidentifikasjon": "01_27_1988"
+  },
+  "planstatus": {
+    "kodeverdi": "1",
+    "kodebeskrivelse": "Planlegging igangsatt"
+  },
+  "varslingsdato": "2019-04-23",
+  "saksnummer": {
+    "saksaar": "2019",
+    "sakssekvensnummer": "1234465"
+  },
+  "vedlegg": [
+    {
+      "dokumenttype": "PLANKART",
+      "filnavn": "06_36_2012_plankart.pdf"
+    },
+    {
+      "dokumenttype": "GEOREFPLAN",
+      "filnavn": "omrissOppdatert.gml"
+    }
+  ]
+}
+
+
+

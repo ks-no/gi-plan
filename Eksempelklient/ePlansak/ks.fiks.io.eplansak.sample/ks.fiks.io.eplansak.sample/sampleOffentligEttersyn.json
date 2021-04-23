@@ -1,0 +1,33 @@
+{
+  "arealplanId": {
+    "administrativEnhet": "0821",
+    "planidentifikasjon": "01_27_1988"
+  },
+  "planstatus": {
+    "kodeverdi": "2",
+    "kodebeskrivelse": "Planforslag"
+  },
+  "planbehandlingstype": {
+    "kodeverdi": "11",
+    "kodebeskrivelse": "Besluttet offentlig ettersyn"
+  },
+
+  "saksnummer": {
+    "saksaar": "2019",
+    "sakssekvensnummer": "2234488"
+  },
+  "kunngjøring": "2019-08-05",
+  "vedlegg": [
+    {
+      "dokumenttype": "PLANKART",
+      "filnavn": "06_36_2012_plankart.pdf"
+    },
+    {
+      "dokumenttype": "PLANBEST",
+      "filnavn": "06_36_2012_føresegner.pdf"
+    }
+  ]
+}
+
+
+
