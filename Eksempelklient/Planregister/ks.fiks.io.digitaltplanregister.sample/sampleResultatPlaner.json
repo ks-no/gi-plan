@@ -1,0 +1,18 @@
+{
+  "matrikkelnummer": {
+    "kommunenummer": "0821",
+    "gårdsnummer": 1,
+    "bruksnummer": 2
+  },
+  "plan": [
+    {
+      "plannavn": "ett eller annet",
+      "plandokumentasjonOppdatert": true
+    },
+    {
+      "plannavn": "ett eller annet",
+      "plandokumentasjonOppdatert": false
+    }
+
+  ]
+}
