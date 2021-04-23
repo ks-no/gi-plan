@@ -13,6 +13,4 @@
 - Lag eget selvsignert sertifikat for krypering i FIKS
 - Last opp krypteringssertifikat i FIKS administrasjonen: følg veiledning nederst på [FIKS integrasjonsutvikling](https://ks-no.github.io/fiks-platform/integrasjoner/)
 
-## FIKS IO meldingsprotokoll
-For ePlansak systemer så er meldingsprotokoll no.ks.fiks. aktuell å støttes som avsender.
 
