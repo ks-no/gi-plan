@@ -5,13 +5,6 @@
 - Kryptering av kommunikasjon/innhold: Oppdater med egen selvsignert krypteringsnøkkel (privkey.pem) som har lastet offentlig nøkkel opp i FIKS
 - Autentisering: Bruk eget virksomhetssertifikat mot Maskinporten (ThumbprintIdPortenVirksomhetssertifikat)
 
-## Bakgrunn
-Dette er et forarbeid til arbeidsoppgaver i fornying av geointegrasjon for å vise muligheter og eksempler på FIKS IO integrasjon.
-Flyten i meldinger baserer seg på brukstilfeller og prosessdiagram definert i ePlansak, Nasjonal produktspesifikasjon for arealplan og digitalt planregister(NPAD), samt arbeid med SOSI Plan 5.0.
-
- ![Meldingsflyt fra ePlansak til digitalt planregister](ks.fiks.io.eplansak.sample/doc/ePlansakflytmotplanregister.png)
- ![Meldingsflyt fra eByggesak til digitalt planregister](ks.fiks.io.eplansak.sample/doc/eByggesakflytmotplanregister.png)
-
 ## Oppsett av maskinporten
 - Bestill eller bruke eget virksomhetssertifikat
 - Legg inn public del av virksomhetssertifikat i maskinporten: følg veiledning på [Difi maskinporten](https://samarbeid.difi.no/felleslosninger/maskinporten)
