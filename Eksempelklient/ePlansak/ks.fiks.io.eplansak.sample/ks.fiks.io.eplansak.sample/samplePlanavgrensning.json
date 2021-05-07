@@ -1,15 +1,11 @@
 {
-  "arealplanId": {
+  "nasjonalArealplanId": {
     "administrativEnhet": "0821",
     "planidentifikasjon": "01_27_1988"
   },
   "vedlegg": [
     {
-      "dokumenttype": "PLANKART",
-      "filnavn": "06_36_2012_plankart.pdf"
-    },
-    {
-      "dokumenttype": "GEOREFPLAN",
+      "dokumenttype": "KART",
       "filnavn": "omrissOppdatert.gml"
     }
   ]
