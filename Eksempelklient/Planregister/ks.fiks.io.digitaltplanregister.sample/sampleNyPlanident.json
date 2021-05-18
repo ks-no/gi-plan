@@ -1,6 +1,10 @@
 {
-  "arealplanId": {
+  "nasjonalArealplanId": {
     "administrativEnhet": "0821",
     "planidentifikasjon": "01_27_1988"
+  },
+  "saksnummer": {
+    "saksaar": "2019",
+    "sakssekvensnummer": "1234465"
   }
 }
