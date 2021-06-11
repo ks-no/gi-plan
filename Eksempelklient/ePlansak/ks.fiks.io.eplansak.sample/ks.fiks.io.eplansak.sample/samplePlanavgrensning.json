@@ -5,8 +5,9 @@
   },
   "vedlegg": [
     {
+      "tittel": "Planavgrensning",
       "dokumenttype": "KART",
-      "filnavn": "omrissOppdatert.gml"
+      "referanseDokumentfil": "omrissOppdatert.gml"
     }
   ]
 }
