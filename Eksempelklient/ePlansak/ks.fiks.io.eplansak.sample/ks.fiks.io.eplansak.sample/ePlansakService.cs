@@ -197,6 +197,28 @@ namespace ks.fiks.io.eplansak.sample
 
         }
 
+        private void SendPlanavgrensning()
+        {
+            Guid receiverId = Guid.Parse(config["sendToAccountId"]); // Konto for Planregister systemet
+            Guid senderId = Guid.Parse(config["accountId"]); // Konto for ePlansak systemet
+
+            var messageRequest = new MeldingRequest(
+                                      mottakerKontoId: receiverId,
+                                      avsenderKontoId: senderId,
+                                      meldingType: "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2"); 
+
+            string payload = File.ReadAllText("samplePlanavgrensning.json");
+
+            List<IPayload> payloads = new List<IPayload>();
+            payloads.Add(new StringPayload(payload, "Planavgrensning.json"));
+            payloads.Add(new KS.Fiks.IO.Client.Models.FilePayload(@"omrissOppdatert.gml"));
+
+            var msg = client.Send(messageRequest, payloads).Result;
+            Console.WriteLine("Melding " + msg.MeldingId.ToString() + " sendt..." + msg.MeldingType + "...med 1 vedlegg");
+            Console.WriteLine(payload);
+
+        }
+
         public Task StopAsync(CancellationToken cancellationToken)
         {
             Console.WriteLine("ePlansak Service is stopping.2");
