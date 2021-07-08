@@ -11,6 +11,8 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using KS.Fiks.IO.Client.Configuration;
 using Ks.Fiks.Maskinporten.Client;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 
 namespace ks.fiks.io.eplansak.sample
 {
@@ -224,6 +226,21 @@ namespace ks.fiks.io.eplansak.sample
             Console.WriteLine("ePlansak Service is stopping.2");
             //Client?
             return Task.CompletedTask;
+        }
+        private static List<List<string>> ValidateJsonFile(string jsonString, string pathToSchema)
+        {
+            List<List<string>> validationErrorMessages = new List<List<string>>() { new List<string>(), new List<string>() };
+            using (TextReader file = File.OpenText(pathToSchema))
+            {
+                JObject jObject = JObject.Parse(jsonString);
+                JSchema schema = JSchema.Parse(file.ReadToEnd());
+                //TODO:Skille mellom errors og warnings hvis det er 
+                jObject.Validate(schema, (o, a) =>
+                {
+                    validationErrorMessages[0].Add(a.Message);
+                });
+            }
+            return validationErrorMessages;
         }
 
         public void Dispose()
