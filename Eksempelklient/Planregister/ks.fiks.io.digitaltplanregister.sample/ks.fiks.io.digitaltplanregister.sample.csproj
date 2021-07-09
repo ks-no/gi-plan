@@ -7,6 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Schema\no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2.schema.json" />
+    <None Remove="Schema\no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2.schema.json" />
+    <None Remove="Schema\no.ks.fiks.gi.plan.oppdatering.meldingomplanident.v2.schema.json" />
+    <None Remove="Schema\no.ks.fiks.gi.plan.oppdatering.opprettarealplan.v2.schema.json" />
+    <None Remove="Schema\no.ks.fiks.gi.plan.oppdatering.planleggingigangsatt.v2.schema.json" />
+    <None Remove="Schema\no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2.schema.json" />
+    <None Remove="Schema\no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2.schema.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Schema\no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2.schema.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schema\no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2.schema.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Schema\no.ks.fiks.gi.plan.oppdatering.meldingomplanident.v2.schema.json" />
+    <EmbeddedResource Include="Schema\no.ks.fiks.gi.plan.oppdatering.opprettarealplan.v2.schema.json" />
+    <EmbeddedResource Include="Schema\no.ks.fiks.gi.plan.oppdatering.planleggingigangsatt.v2.schema.json" />
+    <EmbeddedResource Include="Schema\no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2.schema.json" />
+    <EmbeddedResource Include="Schema\no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2.schema.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="KS.Fiks.IO.Client" Version="1.1.13" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />

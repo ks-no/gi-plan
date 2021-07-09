@@ -1,18 +1,30 @@
-{
-  "matrikkelnummer": {
-    "kommunenummer": "0821",
-    "g�rdsnummer": 1,
-    "bruksnummer": 2
-  },
-  "plan": [
-    {
-      "plannavn": "ett eller annet",
-      "plandokumentasjonOppdatert": true
-    },
-    {
-      "plannavn": "ett eller annet",
-      "plandokumentasjonOppdatert": false
-    }
+﻿{
+    "arealplanId": {
+        "administrativEnhet": {
+            "kommunenummer": "0821",
+            "fylkesnummer": "1",
+            "landskode": "NO"
+        },
+        "planidentifikasjon": "planidentifikasjon",
 
-  ]
+        "plannavn": "plannavn",
+        "planType": {
+            "kodeverdi": "1",
+            "kodebeskrivelse": "plantype"
+        },
+        "planstatus": {
+            "kodeverdi": "1",
+            "kodebeskrivelse": "planstatus"
+        },
+        "plandokumentasjonOppdatert": true,
+        "ubehandletKlage": false,
+        "ubehandletInnsigelse": false
+
+    },
+    "matrikkelnummer": {
+        "kommunenummer": "0821",
+        "gårdsnummer": 1,
+        "bruksnummer": 2
+    }
 }
+    

@@ -90,250 +90,204 @@ namespace ks.fiks.io.digitaltplanregister.sample
             if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2")
             {
                 Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string payload = File.ReadAllText("sampleResultatPlaner.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2";
 
                 //TODO håndtere meldingen med ønsket funksjonalitet
-
-                if (mottatt.Melding.HasPayload)
-                { // Verify that message has payload
-                    List<List<string>> errorMessages = new List<List<string>>() { new List<string>(), new List<string>() };
-                    IAsicReader reader = new AsiceReader();
-                    using (var inputStream = mottatt.Melding.DecryptedStream.Result)
-                    using (var asice = reader.Read(inputStream))
-                    {
-                        foreach (var asiceReadEntry in asice.Entries)
-                        {
-                            using (var entryStream = asiceReadEntry.OpenStream())
-                            {
-                                if (asiceReadEntry.FileName.Contains(".json"))
-                                {
-                                    errorMessages = ValidateJsonFile(new StreamReader(entryStream).ReadToEnd(), Path.Combine("schema", "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2.schema.json"));
-                                }
-                                else
-                                    Console.WriteLine("Mottatt vedlegg: " + asiceReadEntry.FileName);
-                            }
-                        }
-                    }
-
-                    if (errorMessages[0].Count == 0)
-                    {
-                        string payload = File.ReadAllText("sampleResultatPlaner.json");
-
-                        errorMessages = ValidateJsonFile(payload, Path.Combine("schema", "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2.schema.json"));
-
-                        if (errorMessages[0].Count == 0)
-                        {
-                            var svarmsg = mottatt.SvarSender.Svar("no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2", payload, "resultat.json").Result; //Meldingstype på svar ikke definert er 08.07.21
-                            Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " sendt...");
-                            Console.WriteLine(payload);
-                            mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-                        }
-                        else
-                        {
-                            Console.WriteLine("Feil i validering av planer for matrikkelenhet");
-                            mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
-                            Console.WriteLine(String.Join("\n ", errorMessages[0]));
-                            mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Feil i validering av finn planer for matrikkelenhet");
-                        mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
-                        Console.WriteLine(String.Join("\n ", errorMessages[0]));
-                        mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-                    }
-                }
-                else
-                {
-                    var svarmsg = mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", "Meldingen mangler innhold", "feil.txt").Result;
-                    Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " Meldingen mangler innhold");
-
-                    mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-
-                }
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
 
-
-
-            //**************************************************************************************************//
-
-
-
-            if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2")
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2")
             {
                 Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
                 //TODO håndtere meldingen med ønsket funksjonalitet
-
-                if (mottatt.Melding.HasPayload)
-                { // Verify that message has payload
-                    List<List<string>> errorMessages = new List<List<string>>() { new List<string>(), new List<string>() };
-                    IAsicReader reader = new AsiceReader();
-                    using (var inputStream = mottatt.Melding.DecryptedStream.Result)
-                    using (var asice = reader.Read(inputStream))
-                    {
-                        foreach (var asiceReadEntry in asice.Entries)
-                        {
-                            using (var entryStream = asiceReadEntry.OpenStream())
-                            {
-                                if (asiceReadEntry.FileName.Contains(".json"))
-                                {
-                                    errorMessages = ValidateJsonFile(new StreamReader(entryStream).ReadToEnd(), Path.Combine("schema", "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2.schema.json"));
-                                }
-                                else
-                                    Console.WriteLine("Mottatt vedlegg: " + asiceReadEntry.FileName);
-                            }
-                        }
-                    }
-
-                    if (errorMessages[0].Count == 0)
-                    {
-                        string payload = File.ReadAllText("sampleResultatPlaner.json");
-
-                        errorMessages = ValidateJsonFile(payload, Path.Combine("schema", "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2.schema.json"));
-
-                        if (errorMessages[0].Count == 0)
-                        {
-                            var svarmsg = mottatt.SvarSender.Svar("no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2", payload, "resultat.json").Result; //Meldingstype på svar ikke definert er 08.07.21
-                            Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " sendt...");
-                            Console.WriteLine(payload);
-                            mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-                        }
-                        else
-                        {
-                            Console.WriteLine("Feil i validering av planer for matrikkelenhet");
-                            mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
-                            Console.WriteLine(String.Join("\n ", errorMessages[0]));
-                            mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Feil i validering av finn planer for matrikkelenhet");
-                        mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
-                        Console.WriteLine(String.Join("\n ", errorMessages[0]));
-                        mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-                    }
-                }
-                else
-                {
-                    var svarmsg = mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", "Meldingen mangler innhold", "feil.txt").Result;
-                    Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " Meldingen mangler innhold");
-
-                    mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-
-                }
+                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
-            
-            else if (mottatt.Melding.MeldingType == "no.geointegrasjon.plan.oppdatering.planleggingigangsatt.v1")
+
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2")
             {
                 Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
                 //TODO håndtere meldingen med ønsket funksjonalitet
+                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
+            }
 
-                if (mottatt.Melding.HasPayload)
-                { // Verify that message has payload
-                    List<List<string>> errorMessages = new List<List<string>>() { new List<string>(), new List<string>() };
-                    IAsicReader reader = new AsiceReader();
-                    using (var inputStream = mottatt.Melding.DecryptedStream.Result)
-                    using (var asice = reader.Read(inputStream))
-                    {
-                        foreach (var asiceReadEntry in asice.Entries)
-                        {
-                            using (var entryStream = asiceReadEntry.OpenStream())
-                            {
-                                if (asiceReadEntry.FileName.Contains(".json"))
-                                {
-                                    errorMessages = ValidateJsonFile(new StreamReader(entryStream).ReadToEnd(), Path.Combine("schema", "no.ks.fiks.gi.plan.oppdatering.planleggingigangsatt.v2.schema.json"));
-                                }
-                                else
-                                    Console.WriteLine("Mottatt vedlegg: " + asiceReadEntry.FileName);
-                            }
-                        }
-                    }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.planleggingigangsatt.v2")
+            {
+                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.planleggingigangsatt.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
-                    if (errorMessages[0].Count == 0)
-                    {
-                        string payload = File.ReadAllText("samlpleNyPlanident.json");
+                //TODO håndtere meldingen med ønsket funksjonalitet
+                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.opprettarealplan.v")
+            {
+                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string payload = File.ReadAllText("sampleNyPlanident.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.opprettarealplan.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.meldingomplanident.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.meldingomplanident.v2";
 
-                        errorMessages = new List<List<string>>() { new List<string>(), new List<string>() }; //ValidateJsonFile(payload, Path.Combine("schema", "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2.schema.json")); Mangler schema? 
+                //TODO håndtere meldingen med ønsket funksjonalitet
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerPlanbehandling.v2")
+            {
+                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerPlanbehandling.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
-                        if (errorMessages[0].Count == 0)
-                        {
-                            var svarmsg = mottatt.SvarSender.Svar("no.ks.fiks.gi.plan.oppdatering.mottatt.v2", payload, "resultat.json").Result; //Meldingstype på svar ikke definert er 08.07.21
-                            Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " sendt...");
-                            Console.WriteLine(payload);
-                            mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-                        }
-                        else
-                        {
-                            Console.WriteLine("Feil i validering av planer for validering av ny planident");
-                            mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
-                            Console.WriteLine(String.Join("\n ", errorMessages[0]));
-                            mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Feil i validering av planer for planlegging igangsatt");
-                        mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
-                        Console.WriteLine(String.Join("\n ", errorMessages[0]));
-                        mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-                    }
-                }
-                else
-                {
-                    var svarmsg = mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", "Meldingen mangler innhold", "feil.txt").Result;
-                    Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " Meldingen mangler innhold");
+                //TODO håndtere meldingen med ønsket funksjonalitet
+                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2")
+            {
+                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
-                    mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-
-                }
-
-
-
+                //TODO håndtere meldingen med ønsket funksjonalitet
+                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
             else if (mottatt.Melding.MeldingType == "no.geointegrasjon.plan.oppdatering.oppretteplan.v1")
             {
                 Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
                 //TODO håndtere meldingen med ønsket funksjonalitet
-
-                string payload = File.ReadAllText("sampleNyPlanident.json");
-
-                var svarmsg = mottatt.SvarSender.Svar("no.geointegrasjon.plan.oppdatering.meldingomplanident.v1", payload, "NyPlanident.json").Result;
-                Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " sendt...");
-                Console.WriteLine(payload);
-
-                mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
-            }
-            else if (mottatt.Melding.MeldingType == "no.geointegrasjon.plan.oppdatering.planvedtak.v1")
-            {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
-
-                //TODO håndtere meldingen med ønsket funksjonalitet
-
-                var svarmsg = mottatt.SvarSender.Svar("no.ks.geointegrasjon.ok.v1").Result;
-                Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " sendt...");
-
-
-                mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
+                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
             else if (mottatt.Melding.MeldingType == "no.ks.geointegrasjon.ok.v1")
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
-
-                //TODO håndtere meldingen med ønsket funksjonalitet
-
-                Console.WriteLine("Melding er håndtert i ePlansak ok ......");
-
-                mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
+                
 
             }
             else
             {
                 Console.WriteLine("Ubehandlet melding i køen " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType);
                 //fileArgs.SvarSender.Ack(); // Ack message to remove it from the queue
+            }
+        }
+
+        private static void HandleRequestWithoutReturnPayload(MottattMeldingArgs mottatt, string jsonSchemaName, string returnMeldingstype)
+        {
+            Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+
+            //TODO håndtere meldingen med ønsket funksjonalitet
+
+            if (mottatt.Melding.HasPayload)
+            { // Verify that message has payload
+                List<List<string>> errorMessages = new List<List<string>>() { new List<string>(), new List<string>() };
+                IAsicReader reader = new AsiceReader();
+                using (var inputStream = mottatt.Melding.DecryptedStream.Result)
+                using (var asice = reader.Read(inputStream))
+                {
+                    foreach (var asiceReadEntry in asice.Entries)
+                    {
+                        using (var entryStream = asiceReadEntry.OpenStream())
+                        {
+                            if (asiceReadEntry.FileName.Contains(".json"))
+                            {
+                                errorMessages = ValidateJsonFile(new StreamReader(entryStream).ReadToEnd(), Path.Combine("schema", jsonSchemaName));
+                            }
+                            else
+                                Console.WriteLine("Mottatt vedlegg: " + asiceReadEntry.FileName);
+                        }
+                    }
+                }
+
+                if (errorMessages[0].Count == 0)
+                {
+                    var svarmsg = mottatt.SvarSender.Svar(returnMeldingstype).Result;
+                    Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " sendt...");
+                    mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
+                }
+                else
+                {
+                    Console.WriteLine("Feil i validering med jsonschema: ", jsonSchemaName);
+                    mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
+                    Console.WriteLine(String.Join("\n ", errorMessages[0]));
+                    mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
+                }
+            }
+            else
+            {
+                var svarmsg = mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", "Meldingen mangler innhold", "feil.txt").Result;
+                Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " Meldingen mangler innhold");
+
+                mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
+            }
+        }
+
+        private static void HandleRequestWithReturnPayload(MottattMeldingArgs mottatt, string jsonSchemaName, string payload, string payloadJsonSchemaName, string returnMeldingstype)
+        {
+            Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+
+            //TODO håndtere meldingen med ønsket funksjonalitet
+
+            if (mottatt.Melding.HasPayload)
+            { // Verify that message has payload
+                List<List<string>> errorMessages = new List<List<string>>() { new List<string>(), new List<string>() };
+                IAsicReader reader = new AsiceReader();
+                using (var inputStream = mottatt.Melding.DecryptedStream.Result)
+                using (var asice = reader.Read(inputStream))
+                {
+                    foreach (var asiceReadEntry in asice.Entries)
+                    {
+                        using (var entryStream = asiceReadEntry.OpenStream())
+                        {
+                            if (asiceReadEntry.FileName.Contains(".json"))
+                            {
+                                errorMessages = ValidateJsonFile(new StreamReader(entryStream).ReadToEnd(), Path.Combine("schema", jsonSchemaName));
+                            }
+                            else
+                                Console.WriteLine("Mottatt vedlegg: " + asiceReadEntry.FileName);
+                        }
+                    }
+                }
+
+                if (errorMessages[0].Count == 0)
+                {
+                    errorMessages = ValidateJsonFile(payload, Path.Combine("schema", payloadJsonSchemaName));
+
+                    if (errorMessages[0].Count == 0)
+                    {
+                        var svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payload, "resultat.json").Result; //Meldingstype på svar ikke definert er 08.07.21
+                        Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " sendt...");
+                        Console.WriteLine(payload);
+                        mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
+                    }
+                    else
+                    {
+                        Console.WriteLine("Feil i validering med jsonschema: ", payloadJsonSchemaName);
+                        mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
+                        Console.WriteLine(String.Join("\n ", errorMessages[0]));
+                        mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Feil i validering med jsonschema: ", jsonSchemaName);
+                    mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
+                    Console.WriteLine(String.Join("\n ", errorMessages[0]));
+                    mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
+                }
+            }
+            else
+            {
+                var svarmsg = mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", "Meldingen mangler innhold", "feil.txt").Result;
+                Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " Meldingen mangler innhold");
+
+                mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
             }
         }
 
@@ -385,5 +339,4 @@ namespace ks.fiks.io.digitaltplanregister.sample
             return cer;
         }
     }
-
 }
