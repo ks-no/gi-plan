@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.oppdatering/MeldingOmPlanident.v2.schema.json",
-  "title": "MeldingOmPlanident",
+  "$id": "https://no.ks.fiks.gi.plan.oppdatering/OppdaterArealplan.v2.schema.json",
+  "title": "OppdaterArealplan",
   "definitions": {
     "Planbehandling": {
       "type": "object",
@@ -73,7 +73,7 @@
   },
   "type": "object",
   "properties": {
-    "nasjonalArealplanId": {
+    "arealplanId": {
       "type": "object",
       "properties": {
         "administrativEnhet": {
@@ -107,24 +107,32 @@
         "planidentifikasjon"
       ]
     },
-    "saksnummer": {
+    "planstatus": {
       "type": "object",
       "properties": {
-        "saksår": {
-          "type": "integer"
+        "kodeverdi": {
+          "type": "string"
         },
-        "sakssekvensnummer": {
-          "type": "integer"
+        "kodebeskrivelse": {
+          "type": "string"
         }
-      },
-      "required": [
-        "saksår",
-        "sakssekvensnummer"
-      ]
+      }
+    },
+    "planbehandling": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Planbehandling"
+      }
+    },
+    "vedlegg": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Plandokument"
+      }
     }
   },
   "required": [
-    "nasjonalArealplanId",
-    "saksnummer"
+    "arealplanId",
+    "planstatus"
   ]
 }

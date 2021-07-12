@@ -3,19 +3,71 @@
   "$id": "https://no.ks.fiks.gi.plan.oppdatering/RegistrerPlanavgrensning.v2.schema.json",
   "title": "RegistrerPlanavgrensning",
   "definitions": {
-    "Vedlegg": {
+    "Planbehandling": {
       "type": "object",
       "properties": {
-        "dokumenttype": {
-          "type": "string"
+        "posisjon": {
+          "description": "Punkt ",
+          "type": "object"
         },
-        "filnavn": {
+        "dato": {
+          "type": "string",
+          "format": "date"
+        },
+        "saksnummer": {
+          "type": "object",
+          "properties": {
+            "saksår": {
+              "type": "integer"
+            },
+            "sakssekvensnummer": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "saksår",
+            "sakssekvensnummer"
+          ]
+        },
+        "planbehandlingtype": {
+          "type": "object",
+          "properties": {
+            "kodeverdi": {
+              "type": "string"
+            },
+            "kodebeskrivelse": {
+              "type": "string"
+            }
+          }
+        },
+        "navn": {
           "type": "string"
         }
       },
       "required": [
+        "dato",
+        "saksnummer",
+        "planbehandlingtype",
+        "navn"
+      ]
+    },
+    "Plandokument": {
+      "type": "object",
+      "properties": {
+        "tittel": {
+          "type": "string"
+        },
+        "dokumenttype": {
+          "type": "string"
+        },
+        "referanseDokumentfil": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tittel",
         "dokumenttype",
-        "filnavn"
+        "referanseDokumentfil"
       ]
     }
   },
@@ -55,14 +107,26 @@
         "planidentifikasjon"
       ]
     },
+    "saksnummer": {
+      "type": "object",
+      "properties": {
+        "saksår": {
+          "type": "integer"
+        },
+        "sakssekvensnummer": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "saksår",
+        "sakssekvensnummer"
+      ]
+    },
     "vedlegg": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/Vedlegg"
+        "$ref": "#/definitions/Plandokument"
       }
     }
-  },
-  "required": [
-    "nasjonalArealplanId"
-  ]
+  }
 }

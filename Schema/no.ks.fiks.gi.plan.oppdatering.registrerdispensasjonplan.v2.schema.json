@@ -3,25 +3,88 @@
   "$id": "https://no.ks.fiks.gi.plan.oppdatering/RegistrerDispensasjonPlan.v2.schema.json",
   "title": "RegistrerDispensasjonPlan",
   "definitions": {
-    "Vedlegg": {
+    "Planbehandling": {
       "type": "object",
       "properties": {
-        "dokumenttype": {
-          "type": "string"
+        "posisjon": {
+          "description": "Punkt ",
+          "type": "object"
         },
-        "filnavn": {
+        "dato": {
+          "type": "string",
+          "format": "date"
+        },
+        "saksnummer": {
+          "type": "object",
+          "properties": {
+            "saksår": {
+              "type": "integer"
+            },
+            "sakssekvensnummer": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "saksår",
+            "sakssekvensnummer"
+          ]
+        },
+        "planbehandlingtype": {
+          "type": "object",
+          "properties": {
+            "kodeverdi": {
+              "type": "string"
+            },
+            "kodebeskrivelse": {
+              "type": "string"
+            }
+          }
+        },
+        "navn": {
           "type": "string"
         }
       },
       "required": [
+        "dato",
+        "saksnummer",
+        "planbehandlingtype",
+        "navn"
+      ]
+    },
+    "Plandokument": {
+      "type": "object",
+      "properties": {
+        "tittel": {
+          "type": "string"
+        },
+        "dokumenttype": {
+          "type": "string"
+        },
+        "referanseDokumentfil": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tittel",
         "dokumenttype",
-        "filnavn"
+        "referanseDokumentfil"
       ]
     }
   },
   "type": "object",
   "properties": {
-    "arealplanID": {
+    "dispensasjon": {
+      "type": "object",
+      "properties": {
+        "kodeverdi": {
+          "type": "string"
+        },
+        "kodebeskrivelse": {
+          "type": "string"
+        }
+      }
+    },
+    "nasjonalArealplanID": {
       "type": "object",
       "properties": {
         "administrativEnhet": {
@@ -54,17 +117,6 @@
         "administrativEnhet",
         "planidentifikasjon"
       ]
-    },
-    "dispensasjon": {
-      "type": "object",
-      "properties": {
-        "kodeverdi": {
-          "type": "string"
-        },
-        "kodebeskrivelse": {
-          "type": "string"
-        }
-      }
     },
     "dispFra": {
       "type": "string"
@@ -109,13 +161,13 @@
     "vedlegg": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/Vedlegg"
+        "$ref": "#/definitions/Plandokument"
       }
     }
   },
   "required": [
-    "arealplanID",
     "dispensasjon",
+    "nasjonalArealplanID",
     "vedtaksdato"
   ]
 }

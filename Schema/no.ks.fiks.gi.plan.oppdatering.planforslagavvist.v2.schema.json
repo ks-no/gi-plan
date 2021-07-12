@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.oppdatering/MeldingOmPlanident.v2.schema.json",
-  "title": "MeldingOmPlanident",
+  "$id": "https://no.ks.fiks.gi.plan.oppdatering/PlanforslagAvvist.v2.schema.json",
+  "title": "PlanforslagAvvist",
   "definitions": {
     "Planbehandling": {
       "type": "object",
@@ -107,6 +107,17 @@
         "planidentifikasjon"
       ]
     },
+    "planstatus": {
+      "type": "object",
+      "properties": {
+        "kodeverdi": {
+          "type": "string"
+        },
+        "kodebeskrivelse": {
+          "type": "string"
+        }
+      }
+    },
     "saksnummer": {
       "type": "object",
       "properties": {
@@ -121,10 +132,22 @@
         "saksår",
         "sakssekvensnummer"
       ]
+    },
+    "planforslagAvvist": {
+      "type": "string",
+      "format": "date"
+    },
+    "vedlegg": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Plandokument"
+      }
     }
   },
   "required": [
     "nasjonalArealplanId",
-    "saksnummer"
+    "planstatus",
+    "saksnummer",
+    "planforslagAvvist"
   ]
 }
