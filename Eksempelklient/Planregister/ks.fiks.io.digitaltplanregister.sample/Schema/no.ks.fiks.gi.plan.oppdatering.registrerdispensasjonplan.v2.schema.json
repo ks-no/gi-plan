@@ -3,25 +3,21 @@
   "$id": "https://no.ks.fiks.gi.plan.oppdatering/RegistrerDispensasjonPlan.v2.schema.json",
   "title": "RegistrerDispensasjonPlan",
   "definitions": {
-    "Vedlegg": {
-      "type": "object",
-      "properties": {
-        "dokumenttype": {
-          "type": "string"
-        },
-        "filnavn": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "dokumenttype",
-        "filnavn"
-      ]
-    }
   },
   "type": "object",
   "properties": {
-    "arealplanID": {
+    "dispensasjon": {
+      "type": "object",
+      "properties": {
+        "kodeverdi": {
+          "type": "string"
+        },
+        "kodebeskrivelse": {
+          "type": "string"
+        }
+      }
+    },
+    "nasjonalArealplanID": {
       "type": "object",
       "properties": {
         "administrativEnhet": {
@@ -54,17 +50,6 @@
         "administrativEnhet",
         "planidentifikasjon"
       ]
-    },
-    "dispensasjon": {
-      "type": "object",
-      "properties": {
-        "kodeverdi": {
-          "type": "string"
-        },
-        "kodebeskrivelse": {
-          "type": "string"
-        }
-      }
     },
     "dispFra": {
       "type": "string"
@@ -105,17 +90,11 @@
         "saksår",
         "sakssekvensnummer"
       ]
-    },
-    "vedlegg": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Vedlegg"
-      }
     }
   },
   "required": [
-    "arealplanID",
     "dispensasjon",
+    "nasjonalArealplanID",
     "vedtaksdato"
   ]
 }

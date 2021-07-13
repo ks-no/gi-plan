@@ -6,25 +6,23 @@
             "landskode": "NO"
         },
         "planidentifikasjon": "planidentifikasjon",
-
-        "plannavn": "plannavn",
-        "planType": {
-            "kodeverdi": "1",
-            "kodebeskrivelse": "plantype"
-        },
-        "planstatus": {
-            "kodeverdi": "1",
-            "kodebeskrivelse": "planstatus"
-        },
-        "plandokumentasjonOppdatert": true,
-        "ubehandletKlage": false,
-        "ubehandletInnsigelse": false
-
     },
+    "plannavn": "plannavn",
+    "planType": {
+        "kodeverdi": "1",
+        "kodebeskrivelse": "plantype"
+    },
+    "planstatus": {
+        "kodeverdi": "1",
+        "kodebeskrivelse": "planstatus"
+    },
+    "plandokumentasjonOppdatert": true,
+    "ubehandletKlage": false,
+    "ubehandletInnsigelse": false,
+
     "matrikkelnummer": {
         "kommunenummer": "0821",
         "gårdsnummer": 1,
         "bruksnummer": 2
     }
 }
-    

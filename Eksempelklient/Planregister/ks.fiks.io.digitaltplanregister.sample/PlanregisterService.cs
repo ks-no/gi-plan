@@ -85,7 +85,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
         static void OnReceivedMelding(object sender, MottattMeldingArgs mottatt)
         {
-
             // Process the message
             if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2")
             {
@@ -95,40 +94,61 @@ namespace ks.fiks.io.digitaltplanregister.sample
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2";
 
-                //TODO håndtere meldingen med ønsket funksjonalitet
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
 
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2")
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplaner.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
             {
                 Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
-                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2.schema.json";
+                string payload = File.ReadAllText("sampleResultatPlaner.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplaner.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planerforsøk.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
-                //TODO håndtere meldingen med ønsket funksjonalitet
-                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2")
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finndispensasjoner.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
             {
                 Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
-                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2.schema.json";
+                string payload = File.ReadAllText("sampleResultatDispensasjoner.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finndispensasjoner.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
-                //TODO håndtere meldingen med ønsket funksjonalitet
-                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
-            }
 
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.planleggingigangsatt.v2")
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplanbehandlinger.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
             {
                 Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
-                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.planleggingigangsatt.v2.schema.json";
+                string payload = File.ReadAllText("sampleResultatPlaner.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplanbehandlinger.v2.schema.json";
+                string payloadJsonSchemaName = "";//Mangler skjema for payload? 
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
-                //TODO håndtere meldingen med ønsket funksjonalitet
-                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.opprettarealplan.v")
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentarealplan.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
+            {
+                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string payload = File.ReadAllText("sampleResultatPlaner.json"); //Skulle inkludert en planbehandling i return? Trenger hvis vi skal teste på returPlanbhenaldinger true/false
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentarealplan.v2.schema.json";
+                string payloadJsonSchemaName = "";//Mangler skjema for payload? 
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.sjekkmidlertidigforbud.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
+            {
+                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string payload = File.ReadAllText(""); //Trenger å vite jsonschema for å lage payload.
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.sjekkmidlertidigforbud.v2.schema.json";
+                string payloadJsonSchemaName = "";//Mangler skjema for payload? 
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.opprettarealplan.v2")
             {
                 Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string payload = File.ReadAllText("sampleNyPlanident.json");
@@ -136,7 +156,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.meldingomplanident.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.meldingomplanident.v2";
 
-                //TODO håndtere meldingen med ønsket funksjonalitet
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerPlanbehandling.v2")
@@ -145,7 +164,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerPlanbehandling.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
-                //TODO håndtere meldingen med ønsket funksjonalitet
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2")
@@ -154,27 +172,50 @@ namespace ks.fiks.io.digitaltplanregister.sample
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
-                //TODO håndtere meldingen med ønsket funksjonalitet
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.geointegrasjon.plan.oppdatering.oppretteplan.v1")
+
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2")
             {
                 Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
-                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2.schema.json";
+                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
-                //TODO håndtere meldingen med ønsket funksjonalitet
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.geointegrasjon.ok.v1")
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.oppdaterarealplan.v2")
             {
-                
+                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.oppdaterarealplan.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
+                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
-            else
+
+            //else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.planleggingigangsatt.v2")
+            //{
+            //    Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+            //    string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.planleggingigangsatt.v2.schema.json";
+            //    string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+
+            //    HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
+            //}
+
+            //else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.planvedtakikraftsatt.v2")
+            //{
+            //    Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+            //    string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.planvedtakikraftsatt.v2.schema.json";
+            //    string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+
+            //    HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
+            //}
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrermidlertidigforbudmottiltak.v2")
             {
-                Console.WriteLine("Ubehandlet melding i køen " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType);
-                //fileArgs.SvarSender.Ack(); // Ack message to remove it from the queue
+                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrermidlertidigforbudmottiltak.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+
+                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
         }
 
@@ -182,7 +223,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
         {
             Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
 
-            //TODO håndtere meldingen med ønsket funksjonalitet
+
 
             if (mottatt.Melding.HasPayload)
             { // Verify that message has payload
@@ -232,7 +273,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
         {
             Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
 
-            //TODO håndtere meldingen med ønsket funksjonalitet
+
 
             if (mottatt.Melding.HasPayload)
             { // Verify that message has payload
