@@ -8,7 +8,7 @@
         "planidentifikasjon": "planidentifikasjon",
     },
     "plannavn": "plannavn",
-    "planType": {
+    "plantype": {
         "kodeverdi": "1",
         "kodebeskrivelse": "plantype"
     },

@@ -88,7 +88,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
             // Process the message
             if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2")
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string payload = File.ReadAllText("sampleResultatPlaner.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2.schema.json";
@@ -99,28 +98,25 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplaner.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string payload = File.ReadAllText("sampleResultatPlaner.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplaner.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planerforsøk.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.planerforsøk.v2";
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finndispensasjoner.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string payload = File.ReadAllText("sampleResultatDispensasjoner.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finndispensasjoner.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.dispensasjonerforsøk.v2";
 
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplanbehandlinger.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string payload = File.ReadAllText("sampleResultatPlaner.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplanbehandlinger.v2.schema.json";
                 string payloadJsonSchemaName = "";//Mangler skjema for payload? 
@@ -130,7 +126,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
             }
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentarealplan.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string payload = File.ReadAllText("sampleResultatPlaner.json"); //Skulle inkludert en planbehandling i return? Trenger hvis vi skal teste på returPlanbhenaldinger true/false
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentarealplan.v2.schema.json";
                 string payloadJsonSchemaName = "";//Mangler skjema for payload? 
@@ -140,7 +135,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
             }
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.sjekkmidlertidigforbud.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string payload = File.ReadAllText(""); //Trenger å vite jsonschema for å lage payload.
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.sjekkmidlertidigforbud.v2.schema.json";
                 string payloadJsonSchemaName = "";//Mangler skjema for payload? 
@@ -150,7 +144,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
             }
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.opprettarealplan.v2")
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string payload = File.ReadAllText("sampleNyPlanident.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.opprettarealplan.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.meldingomplanident.v2.schema.json";
@@ -160,7 +153,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
             }
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerPlanbehandling.v2")
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerPlanbehandling.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
@@ -168,7 +160,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
             }
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2")
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
@@ -177,7 +168,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2")
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
@@ -185,7 +175,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
             }
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.oppdaterarealplan.v2")
             {
-                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.oppdaterarealplan.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 

@@ -1,100 +1,100 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.oppdatering/RegistrerDispensasjonPlan.v2.schema.json",
-  "title": "RegistrerDispensasjonPlan",
-  "definitions": {
-  },
-  "type": "object",
-  "properties": {
-    "dispensasjon": {
-      "type": "object",
-      "properties": {
-        "kodeverdi": {
-          "type": "string"
-        },
-        "kodebeskrivelse": {
-          "type": "string"
-        }
-      }
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://no.ks.fiks.gi.plan.oppdatering/RegistrerDispensasjonPlan.v2.schema.json",
+    "title": "RegistrerDispensasjonPlan",
+    "definitions": {
     },
-    "nasjonalArealplanID": {
-      "type": "object",
-      "properties": {
-        "administrativEnhet": {
-          "type": "object",
-          "properties": {
-            "kommunenummer": {
-              "description": "Kommunenummer",
-              "type": "object"
-            },
-            "fylkesnummer": {
-              "description": "Fylkesnummer",
-              "type": "object"
-            },
-            "landskode": {
-              "description": "Landskode",
-              "type": "object"
+    "type": "object",
+    "properties": {
+        "dispensasjon": {
+            "type": "object",
+            "properties": {
+                "kodeverdi": {
+                    "type": "string"
+                },
+                "kodebeskrivelse": {
+                    "type": "string"
+                }
             }
-          },
-          "required": [
-            "kommunenummer",
-            "fylkesnummer",
-            "landskode"
-          ]
         },
-        "planidentifikasjon": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "administrativEnhet",
-        "planidentifikasjon"
-      ]
-    },
-    "dispFra": {
-      "type": "string"
-    },
-    "vedtaksdato": {
-      "type": "string",
-      "format": "date"
-    },
-    "posisjon": {
-      "description": "Punkt",
-      "type": "object"
-    },
-    "vertikalnivå": {
-      "type": "object",
-      "properties": {
-        "kodeverdi": {
-          "type": "string"
+        "nasjonalArealplanID": {
+            "type": "object",
+            "properties": {
+                "administrativEnhet": {
+                    "type": "object",
+                    "properties": {
+                        "kommunenummer": {
+                            "description": "Kommunenummer",
+                            "type": "string"
+                        },
+                        "fylkesnummer": {
+                            "description": "Fylkesnummer",
+                            "type": "string"
+                        },
+                        "landskode": {
+                            "description": "Landskode",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "kommunenummer",
+                        "fylkesnummer",
+                        "landskode"
+                    ]
+                },
+                "planidentifikasjon": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "administrativEnhet",
+                "planidentifikasjon"
+            ]
         },
-        "kodebeskrivelse": {
-          "type": "string"
-        }
-      }
-    },
-    "navn": {
-      "type": "string"
-    },
-    "saksnummer": {
-      "type": "object",
-      "properties": {
-        "saksår": {
-          "type": "integer"
+        "dispFra": {
+            "type": "string"
         },
-        "sakssekvensnummer": {
-          "type": "integer"
+        "vedtaksdato": {
+            "type": "string",
+            "format": "date"
+        },
+        "posisjon": {
+            "description": "Punkt",
+            "type": "object"
+        },
+        "vertikalnivå": {
+            "type": "object",
+            "properties": {
+                "kodeverdi": {
+                    "type": "string"
+                },
+                "kodebeskrivelse": {
+                    "type": "string"
+                }
+            }
+        },
+        "navn": {
+            "type": "string"
+        },
+        "saksnummer": {
+            "type": "object",
+            "properties": {
+                "saksår": {
+                    "type": "integer"
+                },
+                "sakssekvensnummer": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "saksår",
+                "sakssekvensnummer"
+            ]
         }
-      },
-      "required": [
-        "saksår",
-        "sakssekvensnummer"
-      ]
-    }
-  },
-  "required": [
-    "dispensasjon",
-    "nasjonalArealplanID",
-    "vedtaksdato"
-  ]
+    },
+    "required": [
+        "dispensasjon",
+        "nasjonalArealplanID",
+        "vedtaksdato"
+    ]
 }

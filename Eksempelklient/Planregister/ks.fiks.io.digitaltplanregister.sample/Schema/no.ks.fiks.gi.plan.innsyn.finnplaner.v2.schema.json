@@ -1,102 +1,16 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.innsyn/FinnPlaner.v2.schema.json",
-  "title": "FinnPlaner",
-  "definitions": {
-    "Arealplan": {
-      "type": "object",
-      "properties": {
-        "arealplanId": {
-          "type": "object",
-          "properties": {
-            "administrativEnhet": {
-              "type": "object",
-              "properties": {
-                "kommunenummer": {
-                  "description": "Kommunenummer",
-                  "type": "object"
-                },
-                "fylkesnummer": {
-                  "description": "Fylkesnummer",
-                  "type": "object"
-                },
-                "landskode": {
-                  "description": "Landskode",
-                  "type": "object"
-                }
-              },
-              "required": [
-                "kommunenummer",
-                "fylkesnummer",
-                "landskode"
-              ]
-            },
-            "planidentifikasjon": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "administrativEnhet",
-            "planidentifikasjon"
-          ]
-        },
-        "plannavn": {
-          "type": "string"
-        },
-        "planType": {
-          "type": "object",
-          "properties": {
-            "kodeverdi": {
-              "type": "string"
-            },
-            "kodebeskrivelse": {
-              "type": "string"
-            }
-          }
-        },
-        "planstatus": {
-          "type": "object",
-          "properties": {
-            "kodeverdi": {
-              "type": "string"
-            },
-            "kodebeskrivelse": {
-              "type": "string"
-            }
-          }
-        },
-        "plandokumentasjonOppdatert": {
-          "type": "boolean"
-        },
-        "ubehandletKlage": {
-          "type": "boolean"
-        },
-        "ubehandletInnsigelse": {
-          "type": "boolean"
-        },
-        "vedtaksDato": {
-          "type": "string",
-          "format": "date"
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://no.ks.fiks.gi.plan.innsyn/FinnPlaner.v2.schema.json",
+    "title": "FinnPlaner",
+    "definitions": {
+    },
+    "type": "object",
+    "properties": {
+        "søkskriterie": {
+            "type": "string"
         }
-      },
-      "required": [
-        "arealplanId",
-        "plannavn",
-        "planType",
-        "planstatus",
-        "plandokumentasjonOppdatert",
-        "ubehandletKlage",
-        "ubehandletInnsigelse"
-      ]
-    }
-  },
-  "type": "object",
-  "properties": {
-    "søkskriterie": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "søkskriterie"
-  ]
+    },
+    "required": [
+        "søkskriterie"
+    ]
 }

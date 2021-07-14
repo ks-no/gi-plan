@@ -3,73 +3,6 @@
   "$id": "https://no.ks.fiks.gi.plan.oppdatering/MeldingOmPlanident.v2.schema.json",
   "title": "MeldingOmPlanident",
   "definitions": {
-    "Planbehandling": {
-      "type": "object",
-      "properties": {
-        "posisjon": {
-          "description": "Punkt ",
-          "type": "object"
-        },
-        "dato": {
-          "type": "string",
-          "format": "date"
-        },
-        "saksnummer": {
-          "type": "object",
-          "properties": {
-            "saksår": {
-              "type": "integer"
-            },
-            "sakssekvensnummer": {
-              "type": "integer"
-            }
-          },
-          "required": [
-            "saksår",
-            "sakssekvensnummer"
-          ]
-        },
-        "planbehandlingtype": {
-          "type": "object",
-          "properties": {
-            "kodeverdi": {
-              "type": "string"
-            },
-            "kodebeskrivelse": {
-              "type": "string"
-            }
-          }
-        },
-        "navn": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "dato",
-        "saksnummer",
-        "planbehandlingtype",
-        "navn"
-      ]
-    },
-    "Plandokument": {
-      "type": "object",
-      "properties": {
-        "tittel": {
-          "type": "string"
-        },
-        "dokumenttype": {
-          "type": "string"
-        },
-        "referanseDokumentfil": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "tittel",
-        "dokumenttype",
-        "referanseDokumentfil"
-      ]
-    }
   },
   "type": "object",
   "properties": {
@@ -78,20 +11,20 @@
       "properties": {
         "administrativEnhet": {
           "type": "object",
-          "properties": {
-            "kommunenummer": {
-              "description": "Kommunenummer",
-              "type": "object"
+            "properties": {
+                "kommunenummer": {
+                    "description": "Kommunenummer",
+                    "type": "string"
+                },
+                "fylkesnummer": {
+                    "description": "Fylkesnummer",
+                    "type": "string"
+                },
+                "landskode": {
+                    "description": "Landskode",
+              "type": "string"
+                }
             },
-            "fylkesnummer": {
-              "description": "Fylkesnummer",
-              "type": "object"
-            },
-            "landskode": {
-              "description": "Landskode",
-              "type": "object"
-            }
-          },
           "required": [
             "kommunenummer",
             "fylkesnummer",
