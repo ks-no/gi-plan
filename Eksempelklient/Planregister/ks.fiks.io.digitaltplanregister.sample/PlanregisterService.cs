@@ -151,7 +151,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerPlanbehandling.v2")
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerplanbehandling.v2")
             {
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerPlanbehandling.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
@@ -212,8 +212,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
         {
             Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
 
-
-
             if (mottatt.Melding.HasPayload)
             { // Verify that message has payload
                 List<List<string>> errorMessages = new List<List<string>>() { new List<string>(), new List<string>() };
@@ -261,8 +259,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
         private static void HandleRequestWithReturnPayload(MottattMeldingArgs mottatt, string jsonSchemaName, string payload, string payloadJsonSchemaName, string returnMeldingstype)
         {
             Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
-
-
 
             if (mottatt.Melding.HasPayload)
             { // Verify that message has payload

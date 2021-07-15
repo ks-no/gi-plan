@@ -1,65 +1,84 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.oppdatering/RegistrerPlanavgrensning.v2.schema.json",
-  "title": "RegistrerPlanavgrensning",
-  "definitions": {
-  },
-  "type": "object",
-  "properties": {
-    "nasjonalArealplanId": {
-      "type": "object",
-      "properties": {
-        "administrativEnhet": {
-          "type": "object",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://no.ks.fiks.gi.plan.oppdatering/RegistrerPlanavgrensning.v2.schema.json",
+    "title": "RegistrerPlanavgrensning",
+    "definitions": {
+        "Plandokument": {
+            "type": "object",
             "properties": {
-                "kommunenummer": {
-                    "description": "Kommunenummer",
+                "tittel": {
                     "type": "string"
                 },
-                "fylkesnummer": {
-                    "description": "Fylkesnummer",
+                "dokumenttype": {
                     "type": "string"
                 },
-                "landskode": {
-                    "description": "Landskode",
-              "type": "string"
+                "referanseDokumentfil": {
+                    "type": "string"
                 }
             },
-          "required": [
-            "kommunenummer",
-            "fylkesnummer",
-            "landskode"
-          ]
-        },
-        "planidentifikasjon": {
-          "type": "string"
+            "required": [
+                "tittel",
+                "dokumenttype",
+                "referanseDokumentfil"
+            ]
         }
-      },
-      "required": [
-        "administrativEnhet",
-        "planidentifikasjon"
-      ]
     },
-    "saksnummer": {
-      "type": "object",
-      "properties": {
-        "saksår": {
-          "type": "integer"
+    "type": "object",
+    "properties": {
+        "nasjonalArealplanId": {
+            "type": "object",
+            "properties": {
+                "administrativEnhet": {
+                    "type": "object",
+                    "properties": {
+                        "kommunenummer": {
+                            "description": "Kommunenummer",
+                            "type": "string"
+                        },
+                        "fylkesnummer": {
+                            "description": "Fylkesnummer",
+                            "type": "string"
+                        },
+                        "landskode": {
+                            "description": "Landskode",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "kommunenummer",
+                        "fylkesnummer",
+                        "landskode"
+                    ]
+                },
+                "planidentifikasjon": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "administrativEnhet",
+                "planidentifikasjon"
+            ]
         },
-        "sakssekvensnummer": {
-          "type": "integer"
+        "saksnummer": {
+            "type": "object",
+            "properties": {
+                "saksår": {
+                    "type": "integer"
+                },
+                "sakssekvensnummer": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "saksår",
+                "sakssekvensnummer"
+            ]
+        },
+        "vedlegg": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Plandokument"
+            }
         }
-      },
-      "required": [
-        "saksår",
-        "sakssekvensnummer"
-      ]
-    },
-    "vedlegg": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Plandokument"
-      }
     }
-  }
 }
