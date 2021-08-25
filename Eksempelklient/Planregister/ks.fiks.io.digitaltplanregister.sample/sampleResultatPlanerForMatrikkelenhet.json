@@ -1,19 +1,19 @@
 ﻿{
-    "arealplaner": [
+    "plan": [
         {
 
             "arealplanId": {
                 "administrativEnhet": {
-                    "kommunenummer": "0821",
-                    "fylkesnummer": "1",
+                    "kommunenummer": "4203",
+                    "fylkesnummer": "42",
                     "landskode": "NO"
                 },
-                "planidentifikasjon": "planidentifikasjon"
+                "planidentifikasjon": "09062018-2"
             },
-            "plannavn": "plannavn",
+            "plannavn": "OMRÅDEPLAN FOR HIS ALLÉ",
             "plantype": {
-                "kodeverdi": "1",
-                "kodebeskrivelse": "plantype"
+                "kodeverdi": "35",
+                "kodebeskrivelse": "Detaljregulering"
             },
             "planstatus": {
                 "kodeverdi": "1",
@@ -23,5 +23,10 @@
             "ubehandletKlage": false,
             "ubehandletInnsigelse": false
         }
-    ]
+    ],
+    "matrikkelnummer": {
+        "kommunenummer": "4203",
+        "gårdsnummer": 1,
+        "bruksnummer": 2
+    }
 }

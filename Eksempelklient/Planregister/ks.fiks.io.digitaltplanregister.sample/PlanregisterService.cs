@@ -88,7 +88,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
             // Process the message
             if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2")
             {
-                string payload = File.ReadAllText("sampleResultatPlaner.json");
+                string payload = File.ReadAllText("sampleResultatPlanerForMatrikkelenhet.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2";
@@ -96,7 +96,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
 
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplaner.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplaner.v2")
             {
                 string payload = File.ReadAllText("sampleResultatPlaner.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplaner.v2.schema.json";
