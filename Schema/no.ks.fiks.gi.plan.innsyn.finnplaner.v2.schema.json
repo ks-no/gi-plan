@@ -6,7 +6,7 @@
     "Arealplan": {
       "type": "object",
       "properties": {
-        "arealplanId": {
+        "nasjonalArealplanId": {
           "type": "object",
           "properties": {
             "administrativEnhet": {
@@ -40,10 +40,7 @@
             "planidentifikasjon"
           ]
         },
-        "plannavn": {
-          "type": "string"
-        },
-        "planType": {
+        "plantype": {
           "type": "object",
           "properties": {
             "kodeverdi": {
@@ -53,6 +50,9 @@
               "type": "string"
             }
           }
+        },
+        "plannavn": {
+          "type": "string"
         },
         "planstatus": {
           "type": "object",
@@ -74,15 +74,15 @@
         "ubehandletInnsigelse": {
           "type": "boolean"
         },
-        "vedtaksDato": {
+        "vedtakEndeligPlanDato": {
           "type": "string",
           "format": "date"
         }
       },
       "required": [
-        "arealplanId",
+        "nasjonalArealplanId",
+        "plantype",
         "plannavn",
-        "planType",
         "planstatus",
         "plandokumentasjonOppdatert",
         "ubehandletKlage",
@@ -93,7 +93,126 @@
   "type": "object",
   "properties": {
     "søkskriterie": {
-      "type": "string"
+      "type": "object",
+      "properties": {
+        "felt": {
+          "type": "object",
+          "properties": {
+            "nasjonalArealplanId.kommunenummer": {
+              "description": "None",
+              "type": "object"
+            },
+            "nasjonalArealplanId.fylkesnummer": {
+              "description": "None",
+              "type": "object"
+            },
+            "nasjonalArealplanId.landkode": {
+              "description": "None",
+              "type": "object"
+            },
+            "nasjonalArealplanId.planidentifikasjon": {
+              "description": "None",
+              "type": "object"
+            },
+            "plantype.kodeverdi": {
+              "description": "None",
+              "type": "object"
+            },
+            "plannavn": {
+              "description": "None",
+              "type": "object"
+            },
+            "planstatus.kodeverdi": {
+              "description": "None",
+              "type": "object"
+            },
+            "plandokumentasjonOppdatert": {
+              "description": "None",
+              "type": "object"
+            },
+            "ubehandletKlage": {
+              "description": "None",
+              "type": "object"
+            },
+            "ubehandletInnsigelse": {
+              "description": "None",
+              "type": "object"
+            },
+            "vedtakEndeligPlanDato": {
+              "description": "None",
+              "type": "object"
+            }
+          },
+          "required": [
+            "nasjonalArealplanId.kommunenummer",
+            "nasjonalArealplanId.fylkesnummer",
+            "nasjonalArealplanId.landkode",
+            "nasjonalArealplanId.planidentifikasjon",
+            "plantype.kodeverdi",
+            "plannavn",
+            "planstatus.kodeverdi",
+            "plandokumentasjonOppdatert",
+            "ubehandletKlage",
+            "ubehandletInnsigelse",
+            "vedtakEndeligPlanDato"
+          ]
+        },
+        "operator": {
+          "type": "object",
+          "properties": {
+            "equal": {
+              "description": "None",
+              "type": "object"
+            },
+            "notequal": {
+              "description": "None",
+              "type": "object"
+            },
+            "between": {
+              "description": "None",
+              "type": "object"
+            },
+            "lessthan": {
+              "description": "None",
+              "type": "object"
+            },
+            "lessequal": {
+              "description": "None",
+              "type": "object"
+            },
+            "greaterthan": {
+              "description": "None",
+              "type": "object"
+            },
+            "greaterequal": {
+              "description": "None",
+              "type": "object"
+            },
+            "inlist": {
+              "description": "None",
+              "type": "object"
+            }
+          },
+          "required": [
+            "equal",
+            "notequal",
+            "between",
+            "lessthan",
+            "lessequal",
+            "greaterthan",
+            "greaterequal",
+            "inlist"
+          ]
+        },
+        "parameterverdier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "felt",
+        "operator",
+        "parameterverdier"
+      ]
     }
   },
   "required": [

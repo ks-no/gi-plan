@@ -1,8 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.innsyn/PlanerForMatrikkelenhet.v2.schema.json",
-  "title": "PlanerForMatrikkelenhet",
-  "description": "Finner alle planer som berører en eiendom. ",
+  "$id": "https://no.ks.fiks.gi.plan.innsyn/MidlertidigForbud.v2.schema.json",
+  "title": "MidlertidigForbud",
   "definitions": {
     "Arealplan": {
       "type": "object",
@@ -93,39 +92,9 @@
   },
   "type": "object",
   "properties": {
-    "matrikkelnummer": {
-      "type": "object",
-      "properties": {
-        "kommunenummer": {
-          "type": "string"
-        },
-        "gårdsnummer": {
-          "type": "integer"
-        },
-        "bruksnummer": {
-          "type": "integer"
-        },
-        "festenummer": {
-          "type": "integer"
-        },
-        "seksjonsnummer": {
-          "type": "integer"
-        }
-      },
-      "required": [
-        "kommunenummer",
-        "gårdsnummer",
-        "bruksnummer"
-      ]
-    },
-    "plan": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Arealplan"
-      }
+    "midlertidigforbud": {
+      "description": "PblMidlForbudMotTiltakOmråde",
+      "type": "object"
     }
-  },
-  "required": [
-    "matrikkelnummer"
-  ]
+  }
 }

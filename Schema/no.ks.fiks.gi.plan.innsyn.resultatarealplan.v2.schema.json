@@ -1,8 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.innsyn/PlanerForMatrikkelenhet.v2.schema.json",
-  "title": "PlanerForMatrikkelenhet",
-  "description": "Finner alle planer som berører en eiendom. ",
+  "$id": "https://no.ks.fiks.gi.plan.innsyn/ResultatArealplan.v2.schema.json",
+  "title": "ResultatArealplan",
   "definitions": {
     "Arealplan": {
       "type": "object",
@@ -93,39 +92,95 @@
   },
   "type": "object",
   "properties": {
-    "matrikkelnummer": {
+    "arealplan": {
       "type": "object",
       "properties": {
-        "kommunenummer": {
+        "nasjonalArealplanId": {
+          "type": "object",
+          "properties": {
+            "administrativEnhet": {
+              "type": "object",
+              "properties": {
+                "kommunenummer": {
+                  "description": "Kommunenummer",
+                  "type": "object"
+                },
+                "fylkesnummer": {
+                  "description": "Fylkesnummer",
+                  "type": "object"
+                },
+                "landskode": {
+                  "description": "Landskode",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "kommunenummer",
+                "fylkesnummer",
+                "landskode"
+              ]
+            },
+            "planidentifikasjon": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "administrativEnhet",
+            "planidentifikasjon"
+          ]
+        },
+        "plantype": {
+          "type": "object",
+          "properties": {
+            "kodeverdi": {
+              "type": "string"
+            },
+            "kodebeskrivelse": {
+              "type": "string"
+            }
+          }
+        },
+        "plannavn": {
           "type": "string"
         },
-        "gårdsnummer": {
-          "type": "integer"
+        "planstatus": {
+          "type": "object",
+          "properties": {
+            "kodeverdi": {
+              "type": "string"
+            },
+            "kodebeskrivelse": {
+              "type": "string"
+            }
+          }
         },
-        "bruksnummer": {
-          "type": "integer"
+        "plandokumentasjonOppdatert": {
+          "type": "boolean"
         },
-        "festenummer": {
-          "type": "integer"
+        "ubehandletKlage": {
+          "type": "boolean"
         },
-        "seksjonsnummer": {
-          "type": "integer"
+        "ubehandletInnsigelse": {
+          "type": "boolean"
+        },
+        "vedtakEndeligPlanDato": {
+          "type": "string",
+          "format": "date"
         }
       },
       "required": [
-        "kommunenummer",
-        "gårdsnummer",
-        "bruksnummer"
+        "nasjonalArealplanId",
+        "plantype",
+        "plannavn",
+        "planstatus",
+        "plandokumentasjonOppdatert",
+        "ubehandletKlage",
+        "ubehandletInnsigelse"
       ]
     },
-    "plan": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Arealplan"
-      }
+    "planbehandling": {
+      "description": "Planbehandling",
+      "type": "object"
     }
-  },
-  "required": [
-    "matrikkelnummer"
-  ]
+  }
 }

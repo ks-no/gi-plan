@@ -6,7 +6,7 @@
     "Arealplan": {
       "type": "object",
       "properties": {
-        "arealplanId": {
+        "nasjonalArealplanId": {
           "type": "object",
           "properties": {
             "administrativEnhet": {
@@ -40,10 +40,7 @@
             "planidentifikasjon"
           ]
         },
-        "plannavn": {
-          "type": "string"
-        },
-        "planType": {
+        "plantype": {
           "type": "object",
           "properties": {
             "kodeverdi": {
@@ -53,6 +50,9 @@
               "type": "string"
             }
           }
+        },
+        "plannavn": {
+          "type": "string"
         },
         "planstatus": {
           "type": "object",
@@ -74,15 +74,15 @@
         "ubehandletInnsigelse": {
           "type": "boolean"
         },
-        "vedtaksDato": {
+        "vedtakEndeligPlanDato": {
           "type": "string",
           "format": "date"
         }
       },
       "required": [
-        "arealplanId",
+        "nasjonalArealplanId",
+        "plantype",
         "plannavn",
-        "planType",
         "planstatus",
         "plandokumentasjonOppdatert",
         "ubehandletKlage",
@@ -92,47 +92,12 @@
   },
   "type": "object",
   "properties": {
-    "nasjonalArealplanId": {
-      "type": "object",
-      "properties": {
-        "administrativEnhet": {
-          "type": "object",
-          "properties": {
-            "kommunenummer": {
-              "description": "Kommunenummer",
-              "type": "object"
-            },
-            "fylkesnummer": {
-              "description": "Fylkesnummer",
-              "type": "object"
-            },
-            "landskode": {
-              "description": "Landskode",
-              "type": "object"
-            }
-          },
-          "required": [
-            "kommunenummer",
-            "fylkesnummer",
-            "landskode"
-          ]
-        },
-        "planidentifikasjon": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "administrativEnhet",
-        "planidentifikasjon"
-      ]
-    },
-    "område?": {
+    "område": {
       "description": "GM_Surface",
       "type": "object"
     }
   },
   "required": [
-    "nasjonalArealplanId",
-    "område?"
+    "område"
   ]
 }
