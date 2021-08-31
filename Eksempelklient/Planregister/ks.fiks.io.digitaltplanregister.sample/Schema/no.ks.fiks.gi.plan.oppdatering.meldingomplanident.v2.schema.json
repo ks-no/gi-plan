@@ -11,20 +11,20 @@
       "properties": {
         "administrativEnhet": {
           "type": "object",
-            "properties": {
-                "kommunenummer": {
-                    "description": "Kommunenummer",
-                    "type": "string"
-                },
-                "fylkesnummer": {
-                    "description": "Fylkesnummer",
-                    "type": "string"
-                },
-                "landskode": {
-                    "description": "Landskode",
-              "type": "string"
-                }
+          "properties": {
+            "kommunenummer": {
+              "description": "Kommunenummer",
+              "type": "object"
             },
+            "fylkesnummer": {
+              "description": "Fylkesnummer",
+              "type": "object"
+            },
+            "landskode": {
+              "description": "Landskode",
+              "type": "object"
+            }
+          },
           "required": [
             "kommunenummer",
             "fylkesnummer",

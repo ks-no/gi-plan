@@ -1,7 +1,11 @@
 ﻿{
+    "matrikkelnummer": {
+        "kommunenummer": "4203",
+        "gårdsnummer": 1,
+        "bruksnummer": 2
+    },
     "plan": [
         {
-
             "arealplanId": {
                 "administrativEnhet": {
                     "kommunenummer": "4203",
@@ -11,7 +15,7 @@
                 "planidentifikasjon": "09062018-2"
             },
             "plannavn": "OMRÅDEPLAN FOR HIS ALLÉ",
-            "plantype": {
+            "planType": {
                 "kodeverdi": "35",
                 "kodebeskrivelse": "Detaljregulering"
             },
@@ -23,10 +27,5 @@
             "ubehandletKlage": false,
             "ubehandletInnsigelse": false
         }
-    ],
-    "matrikkelnummer": {
-        "kommunenummer": "4203",
-        "gårdsnummer": 1,
-        "bruksnummer": 2
-    }
+    ]
 }

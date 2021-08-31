@@ -13,8 +13,8 @@
   },
 
   "saksnummer": {
-    "saksaar": "2019",
-    "sakssekvensnummer": "2234488"
+    "saksaar": 2019,
+    "sakssekvensnummer": 2234488
   },
   "kunngjøring": "2019-08-05",
   "vedlegg": [

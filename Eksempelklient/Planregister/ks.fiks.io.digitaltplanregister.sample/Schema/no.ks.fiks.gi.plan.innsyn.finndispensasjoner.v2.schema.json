@@ -1,16 +1,140 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://no.ks.fiks.gi.plan.innsyn/FinnDispensasjoner.v2.schema.json",
-    "title": "FinnDispensasjoner",
-    "definitions": {
-    },
-    "type": "object",
-    "properties": {
-        "søkskriterie": {
-            "type": "string"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://no.ks.fiks.gi.plan.innsyn/FinnDispensasjoner.v2.schema.json",
+  "title": "FinnDispensasjoner",
+  "definitions": {
+  },
+  "type": "object",
+  "properties": {
+    "søkskriterie": {
+      "type": "object",
+      "properties": {
+        "felt": {
+          "type": "object",
+          "properties": {
+            "dispId": {
+              "description": "None",
+              "type": "object"
+            },
+            "dispensasjon.kodeverdi": {
+              "description": "None",
+              "type": "object"
+            },
+            "nasjonalArealplanId.kommunenummer": {
+              "description": "None",
+              "type": "object"
+            },
+            "nasjonalArealplanId.fylkesnummer": {
+              "description": "None",
+              "type": "object"
+            },
+            "nasjonalArealplanId.landkode": {
+              "description": "None",
+              "type": "object"
+            },
+            "nasjonalArealplanId.planidentifikasjon": {
+              "description": "None",
+              "type": "object"
+            },
+            "begrunnelse": {
+              "description": "None",
+              "type": "object"
+            },
+            "vedtaksdato": {
+              "description": "None",
+              "type": "object"
+            },
+            "beskrivelse": {
+              "description": "None",
+              "type": "object"
+            },
+            "innvilgetDispensasjon": {
+              "description": "None",
+              "type": "object"
+            },
+            "saksnummer.saksaar": {
+              "description": "None",
+              "type": "object"
+            },
+            "saksnummer.saksekvensnummer": {
+              "description": "None",
+              "type": "object"
+            }
+          },
+          "required": [
+            "dispId",
+            "dispensasjon.kodeverdi",
+            "nasjonalArealplanId.kommunenummer",
+            "nasjonalArealplanId.fylkesnummer",
+            "nasjonalArealplanId.landkode",
+            "nasjonalArealplanId.planidentifikasjon",
+            "begrunnelse",
+            "vedtaksdato",
+            "beskrivelse",
+            "innvilgetDispensasjon",
+            "saksnummer.saksaar",
+            "saksnummer.saksekvensnummer"
+          ]
+        },
+        "operator": {
+          "type": "object",
+          "properties": {
+            "equal": {
+              "description": "None",
+              "type": "object"
+            },
+            "notequal": {
+              "description": "None",
+              "type": "object"
+            },
+            "between": {
+              "description": "None",
+              "type": "object"
+            },
+            "lessthan": {
+              "description": "None",
+              "type": "object"
+            },
+            "lessequal": {
+              "description": "None",
+              "type": "object"
+            },
+            "greaterthan": {
+              "description": "None",
+              "type": "object"
+            },
+            "greaterequal": {
+              "description": "None",
+              "type": "object"
+            },
+            "inlist": {
+              "description": "None",
+              "type": "object"
+            }
+          },
+          "required": [
+            "equal",
+            "notequal",
+            "between",
+            "lessthan",
+            "lessequal",
+            "greaterthan",
+            "greaterequal",
+            "inlist"
+          ]
+        },
+        "parameterverdier": {
+          "type": "string"
         }
-    },
-    "required": [
-        "søkskriterie"
-    ]
+      },
+      "required": [
+        "felt",
+        "operator",
+        "parameterverdier"
+      ]
+    }
+  },
+  "required": [
+    "søkskriterie"
+  ]
 }
