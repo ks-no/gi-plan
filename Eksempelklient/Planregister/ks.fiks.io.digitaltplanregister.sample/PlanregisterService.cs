@@ -109,7 +109,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
             {
                 string payload = File.ReadAllText("sampleResultatDispensasjoner.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finndispensasjoner.v2.schema.json";
-                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.dispensasjoner.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.dispensasjonerforsøk.v2";
 
 
@@ -273,6 +273,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
                         {
                             if (asiceReadEntry.FileName.Contains(".json"))
                             {
+                                //var content = new StreamReader(entryStream).ReadToEnd();
                                 errorMessages = ValidateJsonFile(new StreamReader(entryStream).ReadToEnd(), Path.Combine("schema", jsonSchemaName));
                             }
                             else
@@ -287,7 +288,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
                     if (errorMessages[0].Count == 0)
                     {
-                        var svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payload, "resultat.json").Result; //Meldingstype på svar ikke definert er 08.07.21
+                        var svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payload, "resultat.json").Result;
                         Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " sendt...");
                         Console.WriteLine(payload);
                         mottatt.SvarSender.Ack(); // Ack message to remove it from the queue

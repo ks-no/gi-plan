@@ -5,11 +5,11 @@
     },
     "nasjonalArealplanID": {
         "administrativEnhet": {
-            "kommunenummer": "0821",
-            "fylkesnummer": "1",
+            "kommunenummer": "4203",
+            "fylkesnummer": "42",
             "landskode": "NO"
         },
-        "planidentifikasjon": "planidentifikasjon"
+        "planidentifikasjon": "09062018-2"
     },
     "vedtaksdato": "2020-06-13"
 }

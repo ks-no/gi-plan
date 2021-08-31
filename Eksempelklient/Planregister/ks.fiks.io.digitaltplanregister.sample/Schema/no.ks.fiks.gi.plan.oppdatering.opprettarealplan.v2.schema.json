@@ -42,36 +42,26 @@
       }
     },
     "saksnummer": {
-      "type": "object",
-      "properties": {
-        "saksår": {
-          "type": "integer"
+        "type": "object",
+        "properties": {
+            "saksår": {
+                "type": "integer"
+            },
+            "sakssekvensnummer": {
+                "type": "integer"
+            }
         },
-        "sakssekvensnummer": {
-          "type": "integer"
-        }
-      },
-      "required": [
-        "saksår",
-        "sakssekvensnummer"
-      ]
+        "required": [
+            "saksår",
+            "sakssekvensnummer"
+        ]
     },
     "forslagsstillerType": {
-      "type": "object",
-      "properties": {
-        "offentlig": {
-          "description": "<undefined>",
-          "type": "object"
-        },
-        "privat": {
-          "description": "<undefined>",
-          "type": "object"
-        }
-      },
-      "required": [
-        "offentlig",
-        "privat"
-      ]
+            "type": "string",
+            "enum": [
+                "offentlig",
+                "privat"
+            ]
     }
   },
   "required": [

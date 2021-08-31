@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="sampleResultatPlanerForMatrikkelenhet.json" />
+    <None Remove="Schema\no.ks.fiks.gi.plan.innsyn.dispensasjoner.v2.schema.json" />
     <None Remove="Schema\no.ks.fiks.gi.plan.innsyn.finndispensasjoner.v2.schema.json" />
     <None Remove="Schema\no.ks.fiks.gi.plan.innsyn.finnplanbehandlinger.v2.schema.json" />
     <None Remove="Schema\no.ks.fiks.gi.plan.innsyn.finnplaner.v2.schema.json" />
@@ -31,6 +32,9 @@
 
   <ItemGroup>
     <Content Include="sampleResultatPlanerForMatrikkelenhet.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Schema\no.ks.fiks.gi.plan.innsyn.dispensasjoner.v2.schema.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Schema\no.ks.fiks.gi.plan.innsyn.finndispensasjoner.v2.schema.json">

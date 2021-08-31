@@ -6,7 +6,7 @@
     },
     "plan": [
         {
-            "arealplanId": {
+            "nasjonalArealplanId": {
                 "administrativEnhet": {
                     "kommunenummer": "4203",
                     "fylkesnummer": "42",
@@ -15,7 +15,7 @@
                 "planidentifikasjon": "09062018-2"
             },
             "plannavn": "OMRÅDEPLAN FOR HIS ALLÉ",
-            "planType": {
+            "plantype": {
                 "kodeverdi": "35",
                 "kodebeskrivelse": "Detaljregulering"
             },
