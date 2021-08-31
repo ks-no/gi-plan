@@ -3,54 +3,6 @@
   "$id": "https://no.ks.fiks.gi.plan.oppdatering/RegistrerDispensasjonPlan.v2.schema.json",
   "title": "RegistrerDispensasjonPlan",
   "definitions": {
-    "Planbehandling": {
-      "type": "object",
-      "properties": {
-        "posisjon": {
-          "description": "Punkt ",
-          "type": "object"
-        },
-        "dato": {
-          "type": "string",
-          "format": "date"
-        },
-        "saksnummer": {
-          "type": "object",
-          "properties": {
-            "saksår": {
-              "type": "integer"
-            },
-            "sakssekvensnummer": {
-              "type": "integer"
-            }
-          },
-          "required": [
-            "saksår",
-            "sakssekvensnummer"
-          ]
-        },
-        "planbehandlingtype": {
-          "type": "object",
-          "properties": {
-            "kodeverdi": {
-              "type": "string"
-            },
-            "kodebeskrivelse": {
-              "type": "string"
-            }
-          }
-        },
-        "navn": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "dato",
-        "saksnummer",
-        "planbehandlingtype",
-        "navn"
-      ]
-    },
     "Plandokument": {
       "type": "object",
       "properties": {
