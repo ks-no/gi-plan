@@ -325,14 +325,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
             {
                 JObject jObject = JObject.Parse(jsonString);
                 JSchema schema = JSchema.Parse(file.ReadToEnd());
-
-                //var newDefinitions = AddAdditionalPropertiesFalseToSchemaExtensionData(schema.ExtensionData);
-                schema.ExtensionData.Remove("definitions");
-                //schema.ExtensionData.Add("definitions", newDefinitions);
-                AddAdditionalPropertiesFalseToSchemaProperties(schema.Properties);
-
-                Console.WriteLine(schema.ToString());
-
                 //TODO:Skille mellom errors og warnings hvis det er 
                 jObject.Validate(schema, (o, a) =>
                 {
@@ -342,62 +334,6 @@ namespace ks.fiks.io.digitaltplanregister.sample
             return validationErrorMessages;
         }
 
-        private static void AddAdditionalPropertiesFalseToSchemaProperties(IDictionary<string, JSchema> properties)
-        {
-            if (properties == null)
-            {
-                return;
-            }
-
-          
-
-            foreach (var item in properties)
-            {
-                item.Value.AllowAdditionalProperties = false;
-                foreach (var itemItem in item.Value.Items)
-                {
-                    AddAdditionalPropertiesFalseToSchemaProperties(itemItem.Properties);
-
-                }
-                AddAdditionalPropertiesFalseToSchemaProperties(item.Value.Properties);
-            }
-        }
-
-        private static JToken AddAdditionalPropertiesFalseToSchemaExtensionData(IDictionary<string, JToken> extensionData)
-        {
-            JToken jToken = null;
-            var dict = new Dictionary<string, JToken>();
-
-            foreach (var item in extensionData)
-            {
-                if (item.Key.Equals("definitions"))
-                {
-                    JSchema extensionItemSchema = JSchema.Parse(item.Value.ToString());
-                    extensionItemSchema.AllowAdditionalProperties = false;
-
-                    var definitionsDictionary = new Dictionary<string, JToken>();
-                    foreach (var extensionItem in extensionItemSchema.ExtensionData)
-                    {
-                        JSchema definitionItemSchema = JSchema.Parse(extensionItem.Value.ToString());
-                        definitionItemSchema.AllowAdditionalProperties = false;
-                        var test = new Dictionary<string, JSchema>
-                        {
-                            { extensionItem.Key, definitionItemSchema }
-                        };
-                        AddAdditionalPropertiesFalseToSchemaProperties(test);
-                        definitionsDictionary.Add(extensionItem.Key, definitionItemSchema);
-                    }
-
-                    extensionItemSchema.ExtensionData.Clear();
-                    foreach (var newExtensionItem in definitionsDictionary)
-                    {
-                        extensionItemSchema.ExtensionData.Add(newExtensionItem.Key, newExtensionItem.Value);
-                    }
-                    jToken = JToken.Parse(extensionItemSchema.ToString());
-                }
-            }
-            return jToken;
-        }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
