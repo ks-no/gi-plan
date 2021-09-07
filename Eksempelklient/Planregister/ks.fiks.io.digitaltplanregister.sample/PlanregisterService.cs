@@ -325,6 +325,13 @@ namespace ks.fiks.io.digitaltplanregister.sample
             {
                 JObject jObject = JObject.Parse(jsonString);
                 JSchema schema = JSchema.Parse(file.ReadToEnd());
+
+                schema.ExtensionData.Remove("definitions");
+                AddAdditionalPropertiesFalseToSchemaProperties(schema.Properties);
+                schema.AllowAdditionalProperties = false;
+
+                Console.WriteLine(schema.ToString());
+
                 //TODO:Skille mellom errors og warnings hvis det er 
                 jObject.Validate(schema, (o, a) =>
                 {
@@ -334,6 +341,19 @@ namespace ks.fiks.io.digitaltplanregister.sample
             return validationErrorMessages;
         }
 
+        private static void AddAdditionalPropertiesFalseToSchemaProperties(IDictionary<string, JSchema> properties)
+        {
+            foreach (var item in properties)
+            {
+                item.Value.AllowAdditionalProperties = false;
+                foreach (var itemItem in item.Value.Items)
+                {
+                    AddAdditionalPropertiesFalseToSchemaProperties(itemItem.Properties);
+
+                }
+                AddAdditionalPropertiesFalseToSchemaProperties(item.Value.Properties);
+            }
+        }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
