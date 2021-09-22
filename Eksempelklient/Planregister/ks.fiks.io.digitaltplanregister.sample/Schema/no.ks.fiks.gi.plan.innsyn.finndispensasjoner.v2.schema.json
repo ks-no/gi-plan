@@ -14,7 +14,7 @@
                     "felt": {
                         "type": "string",
                         "enum": [
-                            "dispId",
+                            "identifikasjon",
                             "dispensasjon.kodeverdi",
                             "nasjonalArealplanId.kommunenummer",
                             "nasjonalArealplanId.fylkesnummer",

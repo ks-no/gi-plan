@@ -14,18 +14,19 @@
                     "felt": {
                         "type": "string",
                         "enum": [
-                            "dispId",
-                            "dispensasjon.kodeverdi",
                             "nasjonalArealplanId.kommunenummer",
                             "nasjonalArealplanId.fylkesnummer",
                             "nasjonalArealplanId.landkode",
                             "nasjonalArealplanId.planidentifikasjon",
-                            "begrunnelse",
-                            "vedtaksdato",
-                            "beskrivelse",
-                            "innvilgetDispensasjon",
-                            "saksnummer.saksaar",
-                            "saksnummer.saksekvensnummer"
+                            "plantype.kodeverdi",
+                            "plannavn",
+                            "planstatus.kodeverdi",
+                            "plandokumentasjonOppdatert",
+                            "ubehandletKlage",
+                            "ubehandletInnsigelse",
+                            "vedtakEndeligPlandato",
+                            "lovreferanse.kodeverdi",
+                            "forslagstillertype"
                         ]
                     },
                     "operator": {

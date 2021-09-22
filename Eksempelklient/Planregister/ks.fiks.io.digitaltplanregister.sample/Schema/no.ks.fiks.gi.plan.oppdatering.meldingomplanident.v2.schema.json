@@ -1,63 +1,63 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.oppdatering/MeldingOmPlanident.v2.schema.json",
-  "title": "MeldingOmPlanident",
-  "definitions": {
-  },
-  "type": "object",
-  "properties": {
-    "nasjonalArealplanId": {
-      "type": "object",
-      "properties": {
-        "administrativEnhet": {
-          "type": "object",
-          "properties": {
-            "kommunenummer": {
-              "description": "Kommunenummer",
-              "type": "string"
-            },
-            "fylkesnummer": {
-              "description": "Fylkesnummer",
-              "type": "string"
-            },
-            "landskode": {
-              "description": "Landskode",
-              "type": "string"
-            }
-          },
-          "required": [
-            "kommunenummer",
-            "fylkesnummer",
-            "landskode"
-          ]
-        },
-        "planidentifikasjon": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "administrativEnhet",
-        "planidentifikasjon"
-      ]
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://no.ks.fiks.gi.plan.oppdatering/MeldingOmPlanident.v2.schema.json",
+    "title": "MeldingOmPlanident",
+    "definitions": {
     },
-    "saksnummer": {
-      "type": "object",
-      "properties": {
-        "saksår": {
-          "type": "integer"
+    "type": "object",
+    "properties": {
+        "nasjonalArealplanId": {
+            "type": "object",
+            "properties": {
+                "administrativEnhet": {
+                    "type": "object",
+                    "properties": {
+                        "kommunenummer": {
+                            "description": "Kommunenummer",
+                            "type": "string"
+                        },
+                        "fylkesnummer": {
+                            "description": "Fylkesnummer",
+                            "type": "string"
+                        },
+                        "landskode": {
+                            "description": "Landskode",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "kommunenummer",
+                        "fylkesnummer",
+                        "landskode"
+                    ]
+                },
+                "planidentifikasjon": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "administrativEnhet",
+                "planidentifikasjon"
+            ]
         },
-        "sakssekvensnummer": {
-          "type": "integer"
+        "saksnummer": {
+            "type": "object",
+            "properties": {
+                "saksår": {
+                    "type": "integer"
+                },
+                "sakssekvensnummer": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "saksår",
+                "sakssekvensnummer"
+            ]
         }
-      },
-      "required": [
-        "saksår",
-        "sakssekvensnummer"
-      ]
-    }
-  },
-  "required": [
-    "nasjonalArealplanId",
-    "saksnummer"
-  ]
+    },
+    "required": [
+        "nasjonalArealplanId",
+        "saksnummer"
+    ]
 }

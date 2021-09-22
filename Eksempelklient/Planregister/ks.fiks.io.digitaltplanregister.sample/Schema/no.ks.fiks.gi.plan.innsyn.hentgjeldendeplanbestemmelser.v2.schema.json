@@ -1,8 +1,9 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://no.ks.fiks.gi.plan.innsyn/FinnPlanbehandlinger.v2.schema.json",
-    "title": "FinnPlanbehandlinger",
-    "definitions": {},
+    "$id": "https://no.ks.fiks.gi.plan.innsyn/HentGjeldendePlanbestemmelser.v2.schema.json",
+    "title": "HentGjeldendePlanbestemmelser",
+    "definitions": {
+    },
     "type": "object",
     "properties": {
         "nasjonalArealplanId": {
@@ -13,15 +14,15 @@
                     "properties": {
                         "kommunenummer": {
                             "description": "Kommunenummer",
-                            "type": "string"
+                            "type": "object"
                         },
                         "fylkesnummer": {
                             "description": "Fylkesnummer",
-                            "type": "string"
+                            "type": "object"
                         },
                         "landskode": {
                             "description": "Landskode",
-                            "type": "string"
+                            "type": "object"
                         }
                     },
                     "required": [
@@ -40,5 +41,7 @@
             ]
         }
     },
-    "required": [ "nasjonalArealplanId" ]
+    "required": [
+        "nasjonalArealplanId"
+    ]
 }

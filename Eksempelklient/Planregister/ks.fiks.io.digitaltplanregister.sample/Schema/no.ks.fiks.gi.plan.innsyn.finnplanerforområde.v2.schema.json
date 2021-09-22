@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://no.ks.fiks.gi.plan.innsyn/FinnPlanerForOmråde.v2.schema.json",
+    "title": "FinnPlanerForOmråde",
+    "definitions": {
+    },
+    "type": "object",
+    "properties": {
+        "område": {
+            "type": "object",
+            "properties": {
+                "koordinatsystem": {
+                    "type": "string"
+                },
+                "ytreAvgrensning": {
+                    "type": "string"
+                },
+                "indreAvgrensning": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "koordinatsystem",
+                "ytreAvgrensning"
+            ]
+        },
+        "required": [
+            "område"
+        ]
+    }
+}

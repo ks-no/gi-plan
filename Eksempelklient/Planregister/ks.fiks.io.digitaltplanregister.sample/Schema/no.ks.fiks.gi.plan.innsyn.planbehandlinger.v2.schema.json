@@ -1,94 +1,64 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.innsyn/Planbehandlinger.v2.schema.json",
-  "title": "Planbehandlinger",
-  "definitions": {
-    "Arealplan": {
-      "type": "object",
-      "properties": {
-        "nasjonalArealplanId": {
-          "type": "object",
-          "properties": {
-            "administrativEnhet": {
-              "type": "object",
-              "properties": {
-                "kommunenummer": {
-                  "description": "Kommunenummer",
-                  "type": "object"
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://no.ks.fiks.gi.plan.innsyn/Planbehandlinger.v2.schema.json",
+    "title": "Planbehandlinger",
+    "definitions": {
+        "Planbehandling": {
+            "type": "object",
+            "properties": {
+                "posisjon": {
+                    "description": "Punkt ",
+                    "type": "object"
                 },
-                "fylkesnummer": {
-                  "description": "Fylkesnummer",
-                  "type": "object"
+                "dato": {
+                    "type": "string",
+                    "format": "date"
                 },
-                "landskode": {
-                  "description": "Landskode",
-                  "type": "object"
+                "saksnummer": {
+                    "type": "object",
+                    "properties": {
+                        "saksår": {
+                            "type": "integer"
+                        },
+                        "sakssekvensnummer": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "saksår",
+                        "sakssekvensnummer"
+                    ]
+                },
+                "planbehandlingtype": {
+                    "type": "object",
+                    "properties": {
+                        "kodeverdi": {
+                            "type": "string"
+                        },
+                        "kodebeskrivelse": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "navn": {
+                    "type": "string"
                 }
-              },
-              "required": [
-                "kommunenummer",
-                "fylkesnummer",
-                "landskode"
-              ]
             },
-            "planidentifikasjon": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "administrativEnhet",
-            "planidentifikasjon"
-          ]
-        },
-        "plantype": {
-          "type": "object",
-          "properties": {
-            "kodeverdi": {
-              "type": "string"
-            },
-            "kodebeskrivelse": {
-              "type": "string"
-            }
-          }
-        },
-        "plannavn": {
-          "type": "string"
-        },
-        "planstatus": {
-          "type": "object",
-          "properties": {
-            "kodeverdi": {
-              "type": "string"
-            },
-            "kodebeskrivelse": {
-              "type": "string"
-            }
-          }
-        },
-        "plandokumentasjonOppdatert": {
-          "type": "boolean"
-        },
-        "ubehandletKlage": {
-          "type": "boolean"
-        },
-        "ubehandletInnsigelse": {
-          "type": "boolean"
-        },
-        "vedtakEndeligPlanDato": {
-          "type": "string",
-          "format": "date"
+            "required": [
+                "dato",
+                "saksnummer",
+                "planbehandlingtype",
+                "navn"
+            ]
         }
-      },
-      "required": [
-        "nasjonalArealplanId",
-        "plantype",
-        "plannavn",
-        "planstatus",
-        "plandokumentasjonOppdatert",
-        "ubehandletKlage",
-        "ubehandletInnsigelse"
-      ]
+    },
+    "type": "object",
+    "properties": {
+        "planbehandlinger": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Planbehandling"
+            }
+        }
     }
-  },
-  "type": "object"
 }

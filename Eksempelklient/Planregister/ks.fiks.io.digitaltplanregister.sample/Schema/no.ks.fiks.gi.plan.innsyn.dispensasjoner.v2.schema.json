@@ -2,6 +2,126 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://no.ks.fiks.gi.plan.innsyn/Dispensasjoner.v2.schema.json",
     "title": "Dispensasjoner",
-    "definitions": {},
-    "type": "object"
+    "definitions": {
+        "Dispensasjon": {
+            "identifikasjon": {
+                "type": "string"
+            },
+            "dispensasjon": {
+                "type": "object",
+                "properties": {
+                    "kodeverdi": {
+                        "type": "string"
+                    },
+                    "kodebeskrivelse": {
+                        "type": "string"
+                    }
+                }
+            },
+            "nasjonalArealplanId": {
+                "type": "object",
+                "properties": {
+                    "administrativEnhet": {
+                        "type": "object",
+                        "properties": {
+                            "kommunenummer": {
+                                "description": "Kommunenummer",
+                                "type": "string"
+                            },
+                            "fylkesnummer": {
+                                "description": "Fylkesnummer",
+                                "type": "string"
+                            },
+                            "landskode": {
+                                "description": "Landskode",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "kommunenummer",
+                            "fylkesnummer",
+                            "landskode"
+                        ]
+                    },
+                    "planidentifikasjon": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "administrativEnhet",
+                    "planidentifikasjon"
+                ]
+            },
+            "begrunnelse": {
+                "type": "string"
+            },
+            "vedtaksdato": {
+                "type": "string",
+                "format": "date"
+            },
+            "posisjon": {
+                "description": "Punkt ",
+                "type": "object"
+            },
+            "vertikalnivå": {
+                "type": "object",
+                "properties": {
+                    "kodeverdi": {
+                        "type": "string"
+                    },
+                    "kodebeskrivelse": {
+                        "type": "string"
+                    }
+                }
+            },
+            "beskrivelse": {
+                "type": "string"
+            },
+            "innvilgetDispensasjon": {
+                "type": "boolean"
+            },
+            "saksnummer": {
+                "type": "object",
+                "properties": {
+                    "saksår": {
+                        "type": "integer"
+                    },
+                    "sakssekvensnummer": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "saksår",
+                    "sakssekvensnummer"
+                ]
+            },
+            "varigDispensasjon": {
+                "type": "boolean"
+            },
+            "varighetFra": {
+                "type": "string",
+                "format": "date"
+            },
+            "varighetTil": {
+                "type": "string",
+                "format": "date"
+            }
+        },
+        "required": [
+            "dispensasjon",
+            "nasjonalArealplanID",
+            "vedtaksdato",
+            "innvilgetDispensasjon",
+            "varigDispensasjon"
+        ]
+    },
+    "type": "object",
+    "properties": {
+        "dispensasjon": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Dispensasjon"
+            }
+        }
+    }
 }

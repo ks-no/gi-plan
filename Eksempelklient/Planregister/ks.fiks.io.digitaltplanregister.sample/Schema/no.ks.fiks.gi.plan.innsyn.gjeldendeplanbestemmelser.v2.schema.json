@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://no.ks.fiks.gi.plan.innsyn/Bbox.v2.schema.json",
+    "title": "Bbox",
+    "definitions": {
+        "Plandokument": {
+            "type": "object",
+            "properties": {
+
+                "tittel": {
+                    "type": "string"
+                },
+
+                "dokumenttype": {
+                    "type": "string"
+                },
+                "referanseDokumentfil": {
+                    "type": "string"
+                },
+                "mimetype": {
+                    "type": "string"
+                },
+                "dokumentsdato": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "arkivnavn": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "tittel",
+                "dokumenttype",
+                "referanseDokumentfil"
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "plandokument": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Plandokument"
+            }
+        }
+    }
+}

@@ -75,7 +75,7 @@
         "ubehandletInnsigelse": {
           "type": "boolean"
         },
-        "vedtakEndeligPlanDato": {
+        "vedtaksdato": {
           "type": "string",
           "format": "date"
         }

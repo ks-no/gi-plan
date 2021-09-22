@@ -1,10 +1,25 @@
-{
+﻿{
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://no.ks.fiks.gi.plan.innsyn/FinnPlanbehandlinger.v2.schema.json",
-    "title": "FinnPlanbehandlinger",
+    "$id": "https://no.ks.fiks.gi.plan.innsyn/HentAktører.v2.schema.json",
+    "title": "HentAktører",
     "definitions": {},
     "type": "object",
     "properties": {
+        "saksnummer": {
+            "type": "object",
+            "properties": {
+                "saksår": {
+                    "type": "integer"
+                },
+                "sakssekvensnummer": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "saksår",
+                "sakssekvensnummer"
+            ]
+        },
         "nasjonalArealplanId": {
             "type": "object",
             "properties": {
@@ -13,15 +28,15 @@
                     "properties": {
                         "kommunenummer": {
                             "description": "Kommunenummer",
-                            "type": "string"
+                            "type": "object"
                         },
                         "fylkesnummer": {
                             "description": "Fylkesnummer",
-                            "type": "string"
+                            "type": "object"
                         },
                         "landskode": {
                             "description": "Landskode",
-                            "type": "string"
+                            "type": "object"
                         }
                     },
                     "required": [
@@ -39,6 +54,5 @@
                 "planidentifikasjon"
             ]
         }
-    },
-    "required": [ "nasjonalArealplanId" ]
+    }
 }
