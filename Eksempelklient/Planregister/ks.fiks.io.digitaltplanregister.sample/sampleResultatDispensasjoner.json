@@ -1,15 +1,21 @@
 ﻿{
-    "dispensasjon": {
-        "kodeverdi": "1",
-        "kodebeskrivelse": "plantype"
-    },
-    "nasjonalArealplanID": {
-        "administrativEnhet": {
-            "kommunenummer": "4203",
-            "fylkesnummer": "42",
-            "landskode": "NO"
-        },
-        "planidentifikasjon": "09062018-2"
-    },
-    "vedtaksdato": "2020-06-13"
+    "dispensasjon": [
+        {
+            "dispensasjon": {
+                "kodeverdi": "1",
+                "kodebeskrivelse": "plantype"
+            },
+            "nasjonalArealplanID": {
+                "administrativEnhet": {
+                    "kommunenummer": "4203",
+                    "fylkesnummer": "42",
+                    "landskode": "NO"
+                },
+                "planidentifikasjon": "09062018-2"
+            },
+            "vedtaksdato": "2020-06-13",
+            "innvilgetDispensasjon": true,
+            "varigDispensasjon": true
+        }
+    ]
 }

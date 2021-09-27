@@ -3,7 +3,7 @@
     "$id": "https://no.ks.fiks.gi.plan.innsyn/Dispensasjoner.v2.schema.json",
     "title": "Dispensasjoner",
     "definitions": {
-        "Dispensasjon": {
+        "dispensasjon": {
             "identifikasjon": {
                 "type": "string"
             },
@@ -120,7 +120,7 @@
         "dispensasjon": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/Dispensasjon"
+                "$ref": "#/definitions/dispensasjon"
             }
         }
     }
