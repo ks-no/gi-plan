@@ -3,29 +3,39 @@
     "$id": "https://no.ks.fiks.gi.plan.innsyn/FinnPlanerForOmråde.v2.schema.json",
     "title": "FinnPlanerForOmråde",
     "definitions": {
+        "linearRing": {
+            "description": "An array of four positions where the first equals the last",
+            "allOf": [
+                { "$ref": "#/definitions/positionArray" },
+                { "minItems": 4 }
+            ]
+        },
+        "positionArray": {
+            "description": "An array of positions",
+            "type": "array",
+            "items": { "$ref": "#/definitions/position" }
+        },
+        "position": {
+            "description": "A single position",
+            "type": "array",
+            "minItems": 2,
+            "items": [
+                { "type": "number" },
+                { "type": "number" }
+            ],
+            "additionalItems": false
+        }
     },
     "type": "object",
     "properties": {
         "område": {
-            "type": "object",
-            "properties": {
-                "koordinatsystem": {
-                    "type": "string"
-                },
-                "ytreAvgrensning": {
-                    "type": "string"
-                },
-                "indreAvgrensning": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "koordinatsystem",
-                "ytreAvgrensning"
+            "type": "array",
+            "allOf": [
+                { "$ref": "#/definitions/linearRing" }
             ]
-        },
-        "required": [
-            "område"
-        ]
-    }
+        }
+    },
+    "required": [
+        "område"
+    ]
 }

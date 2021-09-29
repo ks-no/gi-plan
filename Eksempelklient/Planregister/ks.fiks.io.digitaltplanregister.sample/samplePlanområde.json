@@ -1,0 +1,15 @@
+﻿{
+    "planområde": [
+        {
+            "område": {
+                "koordinatsystem": "koordinatsystem",
+                "ytreAvgrensning": "[ [ [ 0 , 0 ] , [ 3 , 6 ] , [ 6 , 1 ] , [ 0 , 0  ] ] ]"
+            },
+            "vertikalnivå": "På grunnen/vannoverflate",
+            "vertikallag": {
+                "lag": "lag",
+                "referansehøyde": "23.32"
+            }
+        }
+    ]
+}

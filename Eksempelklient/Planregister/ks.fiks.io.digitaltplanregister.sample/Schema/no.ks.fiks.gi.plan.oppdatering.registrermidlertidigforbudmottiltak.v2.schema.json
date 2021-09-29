@@ -2,8 +2,30 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://no.ks.fiks.gi.plan.oppdatering/RegistrerMidlertidigForbudMotTiltak.v2.schema.json",
     "title": "RegistrerMidlertidigForbudMotTiltak",
-    "description": "Forvaltning av «midlertidig forbud mot tiltak» i planregister\r\n\r\n”Midlertidig forbud mot tiltak” er ikke en plantype, og dermed heller ikke arealplandata, men\r\ngyldighetsområdet skal likevel inngå i kommunalt planregister, og forvaltes som et eget datalag. Dette fordi\r\nslike midlertidige forbud mot tiltak utgjør en kraftig restriksjon i videre bruk av arealer inntil det er gjennomført\r\nny planprosess. ",
+    "description": "Forvaltning av «midlertidig forbud mot tiltak» i planregister ”Midlertidig forbud mot tiltak” er ikke en plantype, og dermed heller ikke arealplandata, men gyldighetsområdet skal likevel inngå i kommunalt planregister, og forvaltes som et eget datalag. Dette fordi slike midlertidige forbud mot tiltak utgjør en kraftig restriksjon i videre bruk av arealer inntil det er gjennomført ny planprosess. ",
     "definitions": {
+        "linearRing": {
+            "description": "An array of four positions where the first equals the last",
+            "allOf": [
+                { "$ref": "#/definitions/positionArray" },
+                { "minItems": 4 }
+            ]
+        },
+        "positionArray": {
+            "description": "An array of positions",
+            "type": "array",
+            "items": { "$ref": "#/definitions/position" }
+        },
+        "position": {
+            "description": "A single position",
+            "type": "array",
+            "minItems": 2,
+            "items": [
+                { "type": "number" },
+                { "type": "number" }
+            ],
+            "additionalItems": false
+        }
     },
     "type": "object",
     "properties": {
@@ -11,8 +33,10 @@
             "type": "object",
             "properties": {
                 "område": {
-                    "description": "GM_Surface",
-                    "type": "object"
+                    "type": "array",
+                    "allOf": [
+                        { "$ref": "#/definitions/linearRing" }
+                    ]
                 },
                 "saksnummer": {
                     "type": "object",
@@ -34,22 +58,8 @@
                     "format": "date"
                 },
                 "pblTiltakForbudType": {
-                    "type": "object",
-                    "properties": {
-                        "midlertidigForbudMotTiltak": {
-                            "description": "None",
-                            "type": "object"
-                        },
-                        "midlertidigForbudNødvendigSamtykke": {
-                            "description": "None",
-                            "type": "object"
-                        },
-                        "statligByggeDeleforbud": {
-                            "description": "None",
-                            "type": "object"
-                        }
-                    },
-                    "required": [
+                    "type": "string",
+                    "enum": [
                         "midlertidigForbudMotTiltak",
                         "midlertidigForbudNødvendigSamtykke",
                         "statligByggeDeleforbud"

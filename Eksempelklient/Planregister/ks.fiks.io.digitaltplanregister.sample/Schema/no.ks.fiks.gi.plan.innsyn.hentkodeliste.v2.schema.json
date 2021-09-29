@@ -7,9 +7,9 @@
     "properties": {
         "kodelistenavn": {
             "type": "string"
-        },
-        "required": [
-            "kodelistenavn"
-        ]
-    }
+        }
+    },
+    "required": [
+        "kodelistenavn"
+    ]
 }
