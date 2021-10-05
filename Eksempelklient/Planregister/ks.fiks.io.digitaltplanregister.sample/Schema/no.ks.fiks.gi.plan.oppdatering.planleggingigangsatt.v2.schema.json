@@ -20,78 +20,77 @@
     }
   },
   "type": "object",
-  "properties": {
-    "nasjonalArealplanId": {
-      "type": "object",
-      "properties": {
-        "administrativEnhet": {
-          "type": "object",
-          "properties": {
-            "kommunenummer": {
-              "description": "Kommunenummer",
-              "type": "object"
+    "properties": {
+        "nasjonalArealplanId": {
+            "type": "object",
+            "properties": {
+                "administrativEnhet": {
+                    "properties": {
+                        "kommunenummer": {
+                            "description": "Kommunenummer",
+                            "type": "string"
+                        },
+                        "fylkesnummer": {
+                            "description": "Fylkesnummer",
+                            "type": "string"
+                        },
+                        "landskode": {
+                            "description": "Landskode",
+                            "type": "string"
+                        }
+                    },
+                    "oneOf": [
+                        { "required": [ "kommunenummer" ] },
+                        { "required": [ "fylkesnummer" ] },
+                        { "required": [ "landskode" ] }
+                    ]
+                },
+                "planidentifikasjon": {
+                    "type": "string"
+                }
             },
-            "fylkesnummer": {
-              "description": "Fylkesnummer",
-              "type": "object"
-            },
-            "landskode": {
-              "description": "Landskode",
-              "type": "object"
+            "required": [
+                "administrativEnhet",
+                "planidentifikasjon"
+            ]
+        },
+        "planstatus": {
+            "type": "object",
+            "properties": {
+                "kodeverdi": {
+                    "type": "string"
+                },
+                "kodebeskrivelse": {
+                    "type": "string"
+                }
             }
-          },
-          "required": [
-            "kommunenummer",
-            "fylkesnummer",
-            "landskode"
-          ]
         },
-        "planidentifikasjon": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "administrativEnhet",
-        "planidentifikasjon"
-      ]
-    },
-    "planstatus": {
-      "type": "object",
-      "properties": {
-        "kodeverdi": {
-          "type": "string"
+        "varslingsdato": {
+            "type": "string",
+            "format": "date"
         },
-        "kodebeskrivelse": {
-          "type": "string"
-        }
-      }
-    },
-    "varslingsdato": {
-      "type": "string",
-      "format": "date"
-    },
-    "saksnummer": {
-      "type": "object",
-      "properties": {
-        "saksår": {
-          "type": "integer"
+        "saksnummer": {
+            "type": "object",
+            "properties": {
+                "saksår": {
+                    "type": "integer"
+                },
+                "sakssekvensnummer": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "saksår",
+                "sakssekvensnummer"
+            ]
         },
-        "sakssekvensnummer": {
-          "type": "integer"
+        "vedlegg": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Vedlegg"
+            }
         }
-      },
-      "required": [
-        "saksår",
-        "sakssekvensnummer"
-      ]
     },
-    "vedlegg": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Vedlegg"
-      }
-    }
-  },
   "required": [
     "nasjonalArealplanId",
     "planstatus",

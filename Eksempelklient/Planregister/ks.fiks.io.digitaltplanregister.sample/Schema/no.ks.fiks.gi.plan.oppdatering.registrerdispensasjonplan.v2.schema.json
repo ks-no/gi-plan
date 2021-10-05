@@ -64,7 +64,6 @@
                     "type": "object",
                     "properties": {
                         "administrativEnhet": {
-                            "type": "object",
                             "properties": {
                                 "kommunenummer": {
                                     "description": "Kommunenummer",
@@ -79,10 +78,10 @@
                                     "type": "string"
                                 }
                             },
-                            "required": [
-                                "kommunenummer",
-                                "fylkesnummer",
-                                "landskode"
+                            "oneOf": [
+                                { "required": [ "kommunenummer" ] },
+                                { "required": [ "fylkesnummer" ] },
+                                { "required": [ "landskode" ] }
                             ]
                         },
                         "planidentifikasjon": {
