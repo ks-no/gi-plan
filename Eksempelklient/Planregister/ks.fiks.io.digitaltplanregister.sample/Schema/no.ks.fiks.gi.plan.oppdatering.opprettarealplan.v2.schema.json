@@ -1,74 +1,74 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.oppdatering/OpprettArealplan.v2.schema.json",
-  "title": "OpprettArealplan",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://no.ks.fiks.gi.plan.oppdatering/OpprettArealplan.v2.schema.json",
+    "title": "OpprettArealplan",
     "definitions": {},
-  "type": "object",
-  "properties": {
-    "plannavn": {
-      "type": "string"
-    },
-    "plantype": {
-      "type": "object",
-      "properties": {
-        "kodeverdi": {
-          "type": "string"
+    "type": "object",
+    "properties": {
+        "plannavn": {
+            "type": "string"
         },
-        "kodebeskrivelse": {
-          "type": "string"
-        }
-      }
-    },
-    "planstatus": {
-      "type": "object",
-      "properties": {
-        "kodeverdi": {
-          "type": "string"
-        },
-        "kodebeskrivelse": {
-          "type": "string"
-        }
-      }
-    },
-    "lovreferanse": {
-      "type": "object",
-      "properties": {
-        "kodeverdi": {
-          "type": "string"
-        },
-        "kodebeskrivelse": {
-          "type": "string"
-        }
-      }
-    },
-    "saksnummer": {
-        "type": "object",
-        "properties": {
-            "saksår": {
-                "type": "integer"
-            },
-            "sakssekvensnummer": {
-                "type": "integer"
+        "plantype": {
+            "type": "object",
+            "properties": {
+                "kodeverdi": {
+                    "type": "string"
+                },
+                "kodebeskrivelse": {
+                    "type": "string"
+                }
             }
         },
-        "required": [
-            "saksår",
-            "sakssekvensnummer"
-        ]
-    },
-    "forslagsstillerType": {
+        "planstatus": {
+            "type": "object",
+            "properties": {
+                "kodeverdi": {
+                    "type": "string"
+                },
+                "kodebeskrivelse": {
+                    "type": "string"
+                }
+            }
+        },
+        "lovreferanse": {
+            "type": "object",
+            "properties": {
+                "kodeverdi": {
+                    "type": "string"
+                },
+                "kodebeskrivelse": {
+                    "type": "string"
+                }
+            }
+        },
+        "saksnummer": {
+            "type": "object",
+            "properties": {
+                "saksår": {
+                    "type": "integer"
+                },
+                "sakssekvensnummer": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "saksår",
+                "sakssekvensnummer"
+            ]
+        },
+        "forslagsstillerType": {
             "type": "string",
             "enum": [
                 "offentlig",
                 "privat"
             ]
-    }
-  },
-  "required": [
-    "plannavn",
-    "plantype",
-    "planstatus",
-    "lovreferanse",
-    "saksnummer"
-  ]
+        }
+    },
+    "required": [
+        "plannavn",
+        "plantype",
+        "planstatus",
+        "lovreferanse",
+        "saksnummer"
+    ]
 }

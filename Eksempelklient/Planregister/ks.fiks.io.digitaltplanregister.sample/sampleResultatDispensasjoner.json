@@ -1,15 +1,20 @@
 ﻿{
-    "identifikasjon": "42d35685-6cd3-46f0-a78d-18ef692e3d46",
-    "dispensasjon": {
-        "kodeverdi": "141",
-        "kodebeskrivelse": "KpArealformål grønnstruktur § 11-7 nr. 3"
-    },
-    "nasjonalArealplanID": {
-        "administrativEnhet": {
-            "kommunenummer": "4203"
-        },
-        "planidentifikasjon": "09062018-2"
-    },
-    "vedtaksdato": "2020-06-13",
-    "beskrivelse": "Det søkes om dispensasjon fra LNF-område, for å sette opp en skjelterskjå på ca 14 m2. Den skal settes opp i utkanten av et beite og skal brukes til lagring av ved. Skjelterskjåen skulle være et leirminne i forbindelse med den planlagte landsleiren som 4H Norge skulle arrangere i Bodø i juli. Skjelterskjåen er bestilt og produsert selv om leiren er avlyst, og det er ønsket å sette den opp."
+    "dispensasjon": [
+        {
+            "dispensasjon": {
+                "kodeverdi": "141",
+                "kodebeskrivelse": "KpArealformål grønnstruktur § 11-7 nr. 3"
+            },
+            "nasjonalArealplanID": {
+                "administrativEnhet": {
+                    "kommunenummer": "4203",
+                },
+                "planidentifikasjon": "09062018-2"
+            },
+            "vedtaksdato": "2020-06-13",
+            "innvilgetDispensasjon": true,
+            "varigDispensasjon": true
+        }
+    ]
+    
 }

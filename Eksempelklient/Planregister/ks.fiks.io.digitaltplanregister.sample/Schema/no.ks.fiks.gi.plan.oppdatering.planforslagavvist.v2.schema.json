@@ -1,153 +1,152 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.oppdatering/PlanforslagAvvist.v2.schema.json",
-  "title": "PlanforslagAvvist",
-  "definitions": {
-    "Planbehandling": {
-      "type": "object",
-      "properties": {
-        "posisjon": {
-          "description": "Punkt ",
-          "type": "object"
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://no.ks.fiks.gi.plan.oppdatering/PlanforslagAvvist.v2.schema.json",
+    "title": "PlanforslagAvvist",
+    "definitions": {
+        "Planbehandling": {
+            "type": "object",
+            "properties": {
+                "posisjon": {
+                    "description": "Punkt ",
+                    "type": "object"
+                },
+                "dato": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "saksnummer": {
+                    "type": "object",
+                    "properties": {
+                        "saksår": {
+                            "type": "integer"
+                        },
+                        "sakssekvensnummer": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "saksår",
+                        "sakssekvensnummer"
+                    ]
+                },
+                "planbehandlingtype": {
+                    "type": "object",
+                    "properties": {
+                        "kodeverdi": {
+                            "type": "string"
+                        },
+                        "kodebeskrivelse": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "navn": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "dato",
+                "saksnummer",
+                "planbehandlingtype",
+                "navn"
+            ]
         },
-        "dato": {
-          "type": "string",
-          "format": "date"
+        "Plandokument": {
+            "type": "object",
+            "properties": {
+                "tittel": {
+                    "type": "string"
+                },
+                "dokumenttype": {
+                    "type": "string"
+                },
+                "referanseDokumentfil": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "tittel",
+                "dokumenttype",
+                "referanseDokumentfil"
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "nasjonalArealplanId": {
+            "type": "object",
+            "properties": {
+                "administrativEnhet": {
+                    "properties": {
+                        "kommunenummer": {
+                            "description": "Kommunenummer",
+                            "type": "string"
+                        },
+                        "fylkesnummer": {
+                            "description": "Fylkesnummer",
+                            "type": "string"
+                        },
+                        "landskode": {
+                            "description": "Landskode",
+                            "type": "string"
+                        }
+                    },
+                    "oneOf": [
+                        { "required": [ "kommunenummer" ] },
+                        { "required": [ "fylkesnummer" ] },
+                        { "required": [ "landskode" ] }
+                    ]
+                },
+                "planidentifikasjon": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "administrativEnhet",
+                "planidentifikasjon"
+            ]
+        },
+        "planstatus": {
+            "type": "object",
+            "properties": {
+                "kodeverdi": {
+                    "type": "string"
+                },
+                "kodebeskrivelse": {
+                    "type": "string"
+                }
+            }
         },
         "saksnummer": {
-          "type": "object",
-          "properties": {
-            "saksår": {
-              "type": "integer"
+            "type": "object",
+            "properties": {
+                "saksår": {
+                    "type": "integer"
+                },
+                "sakssekvensnummer": {
+                    "type": "integer"
+                }
             },
-            "sakssekvensnummer": {
-              "type": "integer"
-            }
-          },
-          "required": [
-            "saksår",
-            "sakssekvensnummer"
-          ]
+            "required": [
+                "saksår",
+                "sakssekvensnummer"
+            ]
         },
-        "planbehandlingtype": {
-          "type": "object",
-          "properties": {
-            "kodeverdi": {
-              "type": "string"
-            },
-            "kodebeskrivelse": {
-              "type": "string"
-            }
-          }
+        "planforslagAvvist": {
+            "type": "string",
+            "format": "date"
         },
-        "navn": {
-          "type": "string"
+        "vedlegg": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Plandokument"
+            }
         }
-      },
-      "required": [
-        "dato",
+    },
+    "required": [
+        "nasjonalArealplanId",
+        "planstatus",
         "saksnummer",
-        "planbehandlingtype",
-        "navn"
-      ]
-    },
-    "Plandokument": {
-      "type": "object",
-      "properties": {
-        "tittel": {
-          "type": "string"
-        },
-        "dokumenttype": {
-          "type": "string"
-        },
-        "referanseDokumentfil": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "tittel",
-        "dokumenttype",
-        "referanseDokumentfil"
-      ]
-    }
-  },
-  "type": "object",
-  "properties": {
-    "nasjonalArealplanId": {
-      "type": "object",
-      "properties": {
-        "administrativEnhet": {
-          "type": "object",
-          "properties": {
-            "kommunenummer": {
-              "description": "Kommunenummer",
-              "type": "object"
-            },
-            "fylkesnummer": {
-              "description": "Fylkesnummer",
-              "type": "object"
-            },
-            "landskode": {
-              "description": "Landskode",
-              "type": "object"
-            }
-          },
-          "required": [
-            "kommunenummer",
-            "fylkesnummer",
-            "landskode"
-          ]
-        },
-        "planidentifikasjon": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "administrativEnhet",
-        "planidentifikasjon"
-      ]
-    },
-    "planstatus": {
-      "type": "object",
-      "properties": {
-        "kodeverdi": {
-          "type": "string"
-        },
-        "kodebeskrivelse": {
-          "type": "string"
-        }
-      }
-    },
-    "saksnummer": {
-      "type": "object",
-      "properties": {
-        "saksår": {
-          "type": "integer"
-        },
-        "sakssekvensnummer": {
-          "type": "integer"
-        }
-      },
-      "required": [
-        "saksår",
-        "sakssekvensnummer"
-      ]
-    },
-    "planforslagAvvist": {
-      "type": "string",
-      "format": "date"
-    },
-    "vedlegg": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Plandokument"
-      }
-    }
-  },
-  "required": [
-    "nasjonalArealplanId",
-    "planstatus",
-    "saksnummer",
-    "planforslagAvvist"
-  ]
+        "planforslagAvvist"
+    ]
 }

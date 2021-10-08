@@ -1,102 +1,109 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.innsyn/PlanerForSøk.v2.schema.json",
-  "title": "PlanerForSøk",
-  "definitions": {
-    "Arealplan": {
-      "type": "object",
-      "properties": {
-        "nasjonalArealplanId": {
-          "type": "object",
-          "properties": {
-            "administrativEnhet": {
-              "type": "object",
-              "properties": {
-                "kommunenummer": {
-                  "description": "Kommunenummer",
-                  "type": "object"
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://no.ks.fiks.gi.plan.innsyn/PlanerForSøk.v2.schema.json",
+    "title": "PlanerForSøk",
+    "definitions": {
+        "plan": {
+            "type": "object",
+            "properties": {
+                "nasjonalArealplanId": {
+                    "type": "object",
+                    "properties": {
+                        "administrativEnhet": {
+                            "properties": {
+                                "kommunenummer": {
+                                    "description": "Kommunenummer",
+                                    "type": "string"
+                                },
+                                "fylkesnummer": {
+                                    "description": "Fylkesnummer",
+                                    "type": "string"
+                                },
+                                "landskode": {
+                                    "description": "Landskode",
+                                    "type": "string"
+                                }
+                            },
+                            "oneOf": [
+                                { "required": [ "kommunenummer" ] },
+                                { "required": [ "fylkesnummer" ] },
+                                { "required": [ "landskode" ] }
+                            ]
+                        },
+                        "planidentifikasjon": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "administrativEnhet",
+                        "planidentifikasjon"
+                    ]
                 },
-                "fylkesnummer": {
-                  "description": "Fylkesnummer",
-                  "type": "object"
+                "plantype": {
+                    "type": "object",
+                    "properties": {
+                        "kodeverdi": {
+                            "type": "string"
+                        },
+                        "kodebeskrivelse": {
+                            "type": "string"
+                        }
+                    }
                 },
-                "landskode": {
-                  "description": "Landskode",
-                  "type": "object"
+                "plannavn": {
+                    "type": "string"
+                },
+                "planstatus": {
+                    "type": "object",
+                    "properties": {
+                        "kodeverdi": {
+                            "type": "string"
+                        },
+                        "kodebeskrivelse": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "plandokumentasjonOppdatert": {
+                    "type": "boolean"
+                },
+                "ubehandletKlage": {
+                    "type": "boolean"
+                },
+                "ubehandletInnsigelse": {
+                    "type": "boolean"
+                },
+                "vedtakEndeligPlanDato": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "forslagstillerType": {
+                    "type": "string",
+                    "enum": [
+                        "offentlig",
+                        "privat"
+                    ]
                 }
-              },
-              "required": [
-                "kommunenummer",
-                "fylkesnummer",
-                "landskode"
-              ]
             },
-            "planidentifikasjon": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "administrativEnhet",
-            "planidentifikasjon"
-          ]
-        },
-        "plantype": {
-          "type": "object",
-          "properties": {
-            "kodeverdi": {
-              "type": "string"
-            },
-            "kodebeskrivelse": {
-              "type": "string"
-            }
-          }
-        },
-        "plannavn": {
-          "type": "string"
-        },
-        "planstatus": {
-          "type": "object",
-          "properties": {
-            "kodeverdi": {
-              "type": "string"
-            },
-            "kodebeskrivelse": {
-              "type": "string"
-            }
-          }
-        },
-        "plandokumentasjonOppdatert": {
-          "type": "boolean"
-        },
-        "ubehandletKlage": {
-          "type": "boolean"
-        },
-        "ubehandletInnsigelse": {
-          "type": "boolean"
-        },
-        "vedtakEndeligPlanDato": {
-          "type": "string",
-          "format": "date"
+            "required": [
+                "nasjonalArealplanId",
+                "plantype",
+                "plannavn",
+                "planstatus",
+                "plandokumentasjonOppdatert",
+                "ubehandletKlage",
+                "ubehandletInnsigelse",
+                "forslagstillerType"
+            ]
         }
-      },
-      "required": [
-        "nasjonalArealplanId",
-        "plantype",
-        "plannavn",
-        "planstatus",
-        "plandokumentasjonOppdatert",
-        "ubehandletKlage",
-        "ubehandletInnsigelse"
-      ]
+    },
+    "type": "object",
+    "properties": {
+        "plan": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/plan"
+            }
+        }
     }
-  },
-  "type": "object",
-  "properties": {
-    "plan": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Arealplan"
-      }
-    }
-  }
 }

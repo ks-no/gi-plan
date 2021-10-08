@@ -180,6 +180,86 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.finnplandokumenter.v2")
+            {
+                string payload = File.ReadAllText("samplePlandokumenter.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplandokumenter.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.plandokumenter.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.plandokumenter.v2";
+
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentaktører.v2")
+            {
+                string payload = File.ReadAllText("sampleAktører.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentaktører.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.aktører.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.aktører.v2";
+
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentbboxforplan.v2")
+            {
+                string payload = File.ReadAllText("sampleBbox.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentbboxforplan.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.bbox.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.bbox.v2";
+
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentgjeldendeplanbestemmelser.v2")
+            {
+                string payload = File.ReadAllText("samplePlanbestemmelser.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentgjeldendeplanbestemmelser.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.gjeldendeplanbestemmelser.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.gjeldendeplanbestemmelser.v2";
+
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentkodeliste.v2")
+            {
+                string payload = File.ReadAllText("sampleKodeliste.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentkodeliste.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.kodeliste.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.kodeliste.v2";
+
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentplanområder.v2")
+            {
+                string payload = File.ReadAllText("samplePlanområde.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentplanområder.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planområder.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.planområder.v2";
+
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentrelaterteplaner.v2")
+            {
+                string payload = File.ReadAllText("sampleRelatertPlan.json");
+                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentrelaterteplaner.v2.schema.json";
+                string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.relaterteplaner.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.relaterteplaner.v2";
+
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.oppdaterdispensasjon.v2")
+            {
+                string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.oppdaterdispensasjon.v2.schema.json";
+                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+
+                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
+            }
+
+            //else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentplanfil.v2")
+            //{
+            //    string payload = File.ReadAllText("samplePlanfil.json");
+            //    string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentplanfil.v2.schema.json";
+            //    string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planfil.v2.schema.json";
+            //    string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.planfil.v2";
+
+            //    HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            //}
 
             //else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.planleggingigangsatt.v2")
             //{
@@ -256,7 +336,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
             }
         }
 
-        private static void HandleRequestWithReturnPayload(MottattMeldingArgs mottatt, string jsonSchemaName, string payload, string payloadJsonSchemaName, string returnMeldingstype)
+        private static void HandleRequestWithReturnPayload(MottattMeldingArgs mottatt, string jsonSchemaName, string payload, string payloadJsonSchemaName, string returnMeldingstype, string attachmentPath = null)
         {
             Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
 
@@ -288,7 +368,19 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
                     if (errorMessages[0].Count == 0)
                     {
-                        var svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payload, "resultat.json").Result;
+                        SendtMelding svarmsg;
+                        //if (attachmentPath != null)
+                        //{
+                        //    var er = new FilePayload(payload);
+                        //    List<IPayload> payloads = new List<IPayload>();
+                        //    payloads.Add(new FilePayload(attachmentPath));
+                        //    payloads.Add(new StringPayload FilePayload(payload));
+                        //    svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payloads).Result;
+                        //}
+                        //else
+                        //{
+                            svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payload, "resultat.json").Result;
+                        //}
                         Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " sendt...");
                         Console.WriteLine(payload);
                         mottatt.SvarSender.Ack(); // Ack message to remove it from the queue

@@ -1,144 +1,87 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://no.ks.fiks.gi.plan.oppdatering/RegistrerMidlertidigForbudMotTiltak.v2.schema.json",
-  "title": "RegistrerMidlertidigForbudMotTiltak",
-  "description": "Forvaltning av «midlertidig forbud mot tiltak» i planregister\r\n\r\n”Midlertidig forbud mot tiltak” er ikke en plantype, og dermed heller ikke arealplandata, men\r\ngyldighetsområdet skal likevel inngå i kommunalt planregister, og forvaltes som et eget datalag. Dette fordi\r\nslike midlertidige forbud mot tiltak utgjør en kraftig restriksjon i videre bruk av arealer inntil det er gjennomført\r\nny planprosess. ",
-  "definitions": {
-    "Planbehandling": {
-      "type": "object",
-      "properties": {
-        "posisjon": {
-          "description": "Punkt ",
-          "type": "object"
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://no.ks.fiks.gi.plan.oppdatering/RegistrerMidlertidigForbudMotTiltak.v2.schema.json",
+    "title": "RegistrerMidlertidigForbudMotTiltak",
+    "description": "Forvaltning av «midlertidig forbud mot tiltak» i planregister ”Midlertidig forbud mot tiltak” er ikke en plantype, og dermed heller ikke arealplandata, men gyldighetsområdet skal likevel inngå i kommunalt planregister, og forvaltes som et eget datalag. Dette fordi slike midlertidige forbud mot tiltak utgjør en kraftig restriksjon i videre bruk av arealer inntil det er gjennomført ny planprosess. ",
+    "definitions": {
+        "linearRing": {
+            "description": "An array of four positions where the first equals the last",
+            "allOf": [
+                { "$ref": "#/definitions/positionArray" },
+                { "minItems": 4 }
+            ]
         },
-        "dato": {
-          "type": "string",
-          "format": "date"
+        "positionArray": {
+            "description": "An array of positions",
+            "type": "array",
+            "items": { "$ref": "#/definitions/position" }
         },
-        "saksnummer": {
-          "type": "object",
-          "properties": {
-            "saksår": {
-              "type": "integer"
-            },
-            "sakssekvensnummer": {
-              "type": "integer"
-            }
-          },
-          "required": [
-            "saksår",
-            "sakssekvensnummer"
-          ]
-        },
-        "planbehandlingtype": {
-          "type": "object",
-          "properties": {
-            "kodeverdi": {
-              "type": "string"
-            },
-            "kodebeskrivelse": {
-              "type": "string"
-            }
-          }
-        },
-        "navn": {
-          "type": "string"
+        "position": {
+            "description": "A single position",
+            "type": "array",
+            "minItems": 2,
+            "items": [
+                { "type": "number" },
+                { "type": "number" }
+            ],
+            "additionalItems": false
         }
-      },
-      "required": [
-        "dato",
-        "saksnummer",
-        "planbehandlingtype",
-        "navn"
-      ]
     },
-    "Plandokument": {
-      "type": "object",
-      "properties": {
-        "tittel": {
-          "type": "string"
-        },
-        "dokumenttype": {
-          "type": "string"
-        },
-        "referanseDokumentfil": {
-          "type": "string"
+    "type": "object",
+    "properties": {
+        "forbudOmråde": {
+            "type": "object",
+            "properties": {
+                "område": {
+                    "type": "array",
+                    "allOf": [
+                        { "$ref": "#/definitions/linearRing" }
+                    ]
+                },
+                "saksnummer": {
+                    "type": "object",
+                    "properties": {
+                        "saksår": {
+                            "type": "integer"
+                        },
+                        "sakssekvensnummer": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "saksår",
+                        "sakssekvensnummer"
+                    ]
+                },
+                "avgjørelsesdato": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "pblTiltakForbudType": {
+                    "type": "string",
+                    "enum": [
+                        "midlertidigForbudMotTiltak",
+                        "midlertidigForbudNødvendigSamtykke",
+                        "statligByggeDeleforbud"
+                    ]
+                },
+                "gyldigTilDato": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "områdenavn": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "område",
+                "avgjørelsesdato",
+                "pblTiltakForbudType",
+                "gyldigTilDato"
+            ]
         }
-      },
-      "required": [
-        "tittel",
-        "dokumenttype",
-        "referanseDokumentfil"
-      ]
-    }
-  },
-  "type": "object",
-  "properties": {
-    "forbudOmråde": {
-      "type": "object",
-      "properties": {
-        "område": {
-          "description": "GM_Surface",
-          "type": "object"
-        },
-        "saksnummer": {
-          "type": "object",
-          "properties": {
-            "saksår": {
-              "type": "integer"
-            },
-            "sakssekvensnummer": {
-              "type": "integer"
-            }
-          },
-          "required": [
-            "saksår",
-            "sakssekvensnummer"
-          ]
-        },
-        "avgjørelsesdato": {
-          "type": "string",
-          "format": "date"
-        },
-        "pblTiltakForbudType": {
-          "type": "object",
-          "properties": {
-            "midlertidigForbudMotTiltak": {
-              "description": "None",
-              "type": "object"
-            },
-            "midlertidigForbudNødvendigSamtykke": {
-              "description": "None",
-              "type": "object"
-            },
-            "statligByggeDeleforbud": {
-              "description": "None",
-              "type": "object"
-            }
-          },
-          "required": [
-            "midlertidigForbudMotTiltak",
-            "midlertidigForbudNødvendigSamtykke",
-            "statligByggeDeleforbud"
-          ]
-        },
-        "gyldigTilDato": {
-          "type": "string",
-          "format": "date"
-        },
-        "områdenavn": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "område",
-        "avgjørelsesdato",
-        "pblTiltakForbudType",
-        "gyldigTilDato"
-      ]
-    }
-  },
-  "required": [
-    "forbudOmråde"
-  ]
+    },
+    "required": [
+        "forbudOmråde"
+    ]
 }

@@ -1,12 +1,9 @@
-{
+ï»¿{
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://no.ks.fiks.gi.plan.innsyn/ResultatArealplan.v2.schema.json",
-    "title": "ResultatArealplan",
+    "$id": "https://no.ks.fiks.gi.plan.innsyn/PlanerForOmrÃ¥de.v2.schema.json",
+    "title": "PlanerForOmrÃ¥de",
     "definitions": {
-    },
-    "type": "object",
-    "properties": {
-        "arealplan": {
+        "Arealplan": {
             "type": "object",
             "properties": {
                 "nasjonalArealplanId": {
@@ -79,6 +76,13 @@
                 "vedtakEndeligPlanDato": {
                     "type": "string",
                     "format": "date"
+                },
+                "forslagstillerType": {
+                    "type": "string",
+                    "enum": [
+                        "offentlig",
+                        "privat"
+                    ]
                 }
             },
             "required": [
@@ -88,57 +92,18 @@
                 "planstatus",
                 "plandokumentasjonOppdatert",
                 "ubehandletKlage",
-                "ubehandletInnsigelse"
+                "ubehandletInnsigelse",
+                "forslagstillerType"
             ]
-        },
-        "planbehandling": {
-            "description": "Planbehandling",
-            "type": "object",
-            "properties": {
-                "posisjon": {
-                    "description": "Punkt ",
-                    "type": "object"
-                },
-                "dato": {
-                    "type": "string",
-                    "format": "date"
-                },
-                "saksnummer": {
-                    "type": "object",
-                    "properties": {
-                        "saksår": {
-                            "type": "integer"
-                        },
-                        "sakssekvensnummer": {
-                            "type": "integer"
-                        }
-                    },
-                    "required": [
-                        "saksår",
-                        "sakssekvensnummer"
-                    ]
-                },
-                "planbehandlingtype": {
-                    "type": "object",
-                    "properties": {
-                        "kodeverdi": {
-                            "type": "string"
-                        },
-                        "kodebeskrivelse": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "navn": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "dato",
-                "saksnummer",
-                "planbehandlingtype",
-                "navn"
-            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "plan": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Arealplan"
+            }
         }
     }
 }
