@@ -180,14 +180,15 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.finnplandokumenter.v2")
+            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplandokumenter.v2")
             {
                 string payload = File.ReadAllText("samplePlandokumenter.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplandokumenter.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.plandokumenter.v2.schema.json";
                 string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.plandokumenter.v2";
+                string attachment = "Oversiktskart.pdf";
 
-                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype, attachment);
             }
             else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentaktører.v2")
             {
@@ -368,21 +369,19 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
                     if (errorMessages[0].Count == 0)
                     {
+                        List<IPayload> payloads = new List<IPayload>();
                         SendtMelding svarmsg;
-                        //if (attachmentPath != null)
-                        //{
-                        //    var er = new FilePayload(payload);
-                        //    List<IPayload> payloads = new List<IPayload>();
-                        //    payloads.Add(new FilePayload(attachmentPath));
-                        //    payloads.Add(new StringPayload FilePayload(payload));
-                        //    svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payloads).Result;
-                        //}
-                        //else
-                        //{
+                        if (attachmentPath != null)
+                        {
+                            var bytes = File.ReadAllBytes(attachmentPath);
+                            payloads.Add(new StringPayload(payload, "resultat.json"));
+                            payloads.Add(new StringPayload(Convert.ToBase64String(bytes), attachmentPath));
+                            svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payloads).Result;
+                        }
+                        else
+                        {
                             svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payload, "resultat.json").Result;
-                        //}
-                        Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " sendt...");
-                        Console.WriteLine(payload);
+                        }
                         mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
                     }
                     else
