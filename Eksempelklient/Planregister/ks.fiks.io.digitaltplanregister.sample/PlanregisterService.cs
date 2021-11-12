@@ -375,7 +375,8 @@ namespace ks.fiks.io.digitaltplanregister.sample
                         {
                             var bytes = File.ReadAllBytes(attachmentPath);
                             payloads.Add(new StringPayload(payload, "resultat.json"));
-                            payloads.Add(new StringPayload(Convert.ToBase64String(bytes), attachmentPath));
+                            payloads.Add(new FilePayload(attachmentPath));
+                            //payloads.Add(new StringPayload(Convert.ToBase64String(bytes), attachmentPath));
                             svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payloads).Result;
                         }
                         else
