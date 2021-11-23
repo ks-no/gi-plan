@@ -101,7 +101,7 @@
                     "format": "date"
                 },
                 "posisjon": {
-                    "description": "Punkt ",
+                    "description": "Punkt",
                     "type": "object"
                 },
                 "vertikalnivå": {
