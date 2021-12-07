@@ -3,6 +3,7 @@ using KS.Fiks.ASiC_E;
 using KS.Fiks.IO.Client;
 using KS.Fiks.IO.Client.Configuration;
 using KS.Fiks.IO.Client.Models;
+using KS.Fiks.Plan.Client.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Linq;
@@ -86,168 +87,167 @@ namespace ks.fiks.io.digitaltplanregister.sample
         static void OnReceivedMelding(object sender, MottattMeldingArgs mottatt)
         {
             // Process the message
-            if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2")
+            if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.FinnPlanerForMatrikkelenhet)
             {
                 string payload = File.ReadAllText("sampleResultatPlanerForMatrikkelenhet.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplanerformatrikkelenhet.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.planerformatrikkelenhet.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatFinnPlanerForMatrikkelenhet;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
 
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplaner.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.FinnPlaner)
             {
                 string payload = File.ReadAllText("sampleResultatPlaner.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplaner.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planerforsøk.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.planerforsøk.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatFinnPlaner;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finndispensasjoner.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.FinnDispensasjoner)
             {
                 string payload = File.ReadAllText("sampleResultatDispensasjoner.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finndispensasjoner.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.dispensasjoner.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.dispensasjonerforsøk.v2";
-
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatFinnDispensasjoner;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplanbehandlinger.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.FinnPlanbehandlinger)
             {
                 string payload = File.ReadAllText("sampleResultatPlaner.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplanbehandlinger.v2.schema.json";
                 string payloadJsonSchemaName = "";//Mangler skjema for payload? 
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentarealplan.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentArealplan)
             {
                 string payload = File.ReadAllText("sampleResultatPlaner.json"); //Skulle inkludert en planbehandling i return? Trenger hvis vi skal teste på returPlanbhenaldinger true/false
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentarealplan.v2.schema.json";
                 string payloadJsonSchemaName = "";//Mangler skjema for payload? 
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.sjekkmidlertidigforbud.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
-            {
-                string payload = File.ReadAllText(""); //Trenger å vite jsonschema for å lage payload.
-                string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.sjekkmidlertidigforbud.v2.schema.json";
-                string payloadJsonSchemaName = "";//Mangler skjema for payload? 
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+            //else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.sjekkmidlertidigforbud.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
+            //{
+            //    string payload = File.ReadAllText(""); //Trenger å vite jsonschema for å lage payload.
+            //    string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.sjekkmidlertidigforbud.v2.schema.json";
+            //    string payloadJsonSchemaName = "";//Mangler skjema for payload? 
+            //    string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
 
-                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
-            }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.opprettarealplan.v2")
+            //    HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            //}
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.OpprettArealplan)
             {
                 string payload = File.ReadAllText("sampleNyPlanident.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.opprettarealplan.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.meldingomplanident.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.meldingomplanident.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatOpprettArealplan;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerplanbehandling.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.RegistrerPlanbehandling)
             {
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerPlanbehandling.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
 
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.RegistrertPlanavgrensning)
             {
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerplanavgrensning.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
 
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
 
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.RegistrerDispensasjonFraPlan)
             {
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrerdispensasjonplan.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
 
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.oppdaterarealplan.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.OppdaterArealplan)
             {
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.oppdaterarealplan.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
 
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.finnplandokumenter.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.FinnPlandokumenter)
             {
                 string payload = File.ReadAllText("samplePlandokumenter.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.finnplandokumenter.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.plandokumenter.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.plandokumenter.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatFinnPlandokumenter;
                 string attachment = "Oversiktskart.pdf";
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype, attachment);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentaktører.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentAktoerer)
             {
                 string payload = File.ReadAllText("sampleAktører.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentaktører.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.aktører.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.aktører.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatHentAktoerer;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentbboxforplan.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentBboxForPlan)
             {
                 string payload = File.ReadAllText("sampleBbox.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentbboxforplan.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.bbox.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.bbox.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatHentBboxForPlan;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentgjeldendeplanbestemmelser.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentGjeldendePlanbestemmelser)
             {
                 string payload = File.ReadAllText("samplePlanbestemmelser.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentgjeldendeplanbestemmelser.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.gjeldendeplanbestemmelser.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.gjeldendeplanbestemmelser.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatHentGjeldendePlanbestemmelser;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentkodeliste.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentKodeliste)
             {
                 string payload = File.ReadAllText("sampleKodeliste.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentkodeliste.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.kodeliste.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.kodeliste.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatHentKodeliste;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentplanområder.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentPlanomraader)
             {
                 string payload = File.ReadAllText("samplePlanområde.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentplanområder.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planområder.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.planområder.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatHentPlanomraader;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentrelaterteplaner.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentRelatertePlaner)
             {
                 string payload = File.ReadAllText("sampleRelatertPlan.json");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentrelaterteplaner.v2.schema.json";
                 string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.relaterteplaner.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.relaterteplaner.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatHentRelatertePlaner;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.oppdaterdispensasjon.v2")
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.OppdaterDispensasjon)
             {
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.oppdaterdispensasjon.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
 
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
@@ -283,7 +283,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
             {
                 Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
                 string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrermidlertidigforbudmottiltak.v2.schema.json";
-                string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
 
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
