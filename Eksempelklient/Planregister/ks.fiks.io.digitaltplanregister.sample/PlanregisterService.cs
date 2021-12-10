@@ -119,7 +119,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
             {
                 string payload = File.ReadAllText("sampleResultatPlanbehandling.json");
                 string jsonSchemaName = FiksPlanMeldingtypeV2.FinnPlanbehandlinger;
-                string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatFinnPlanbehandlinger;//Mangler skjema for payload? 
+                string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatFinnPlanbehandlinger; 
                 string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatFinnPlanbehandlinger;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
