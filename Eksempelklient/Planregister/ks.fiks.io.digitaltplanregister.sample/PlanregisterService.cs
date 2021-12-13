@@ -128,8 +128,8 @@ namespace ks.fiks.io.digitaltplanregister.sample
             {
                 string payload = File.ReadAllText("sampleResultatArealplan.json"); //Skulle inkludert en planbehandling i return? Trenger hvis vi skal teste på returPlanbhenaldinger true/false
                 string jsonSchemaName = FiksPlanMeldingtypeV2.HentArealplan;
-                string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatHentArealPlan;//Mangler skjema for payload? 
-                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatHentArealPlan;
+                string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatHentArealplan;//Mangler skjema for payload? 
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatHentArealplan;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
@@ -279,14 +279,14 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
             //    HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             //}
-            //else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.RegistrerMidlertidigForbudMotTiltak)
-            //{
-            //    Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
-            //    string jsonSchemaName = FiksPlanMeldingtypeV2.RegistrerMidlertidigForbudMotTiltak;
-            //    string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.RegistrerMidlertidigForbudMotTiltak)
+            {
+                Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
+                string jsonSchemaName = FiksPlanMeldingtypeV2.RegistrerMidlertidigForbudMotTiltak;
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
 
-            //    HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
-            //}
+                HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
+            }
         }
 
         private static void HandleRequestWithoutReturnPayload(MottattMeldingArgs mottatt, string jsonSchemaName, string returnMeldingstype)
