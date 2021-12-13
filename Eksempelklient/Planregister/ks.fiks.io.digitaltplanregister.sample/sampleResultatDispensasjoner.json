@@ -1,4 +1,4 @@
-﻿{
+﻿c{
     "dispensasjon": [
         {
             "dispensasjon": {
@@ -7,9 +7,9 @@
             },
             "nasjonalArealplanID": {
                 "administrativEnhet": {
-                    "kommunenummer": "4203",
+                    "kommunenummer": "4203"
                 },
-                "planidentifikasjon": "09062018-2"
+                "planidentifikasjon": "01_27_1988"
             },
             "vedtaksdato": "2020-06-13",
             "innvilgetDispensasjon": true,
