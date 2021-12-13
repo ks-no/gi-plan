@@ -73,6 +73,9 @@
     <None Update="privkey.pem">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="samplePlanfil.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="sampleRelatertPlan.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -86,6 +89,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="sampleResultatPlanbehandling.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sampleResultatArealplan.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="sampleResultatPlaner.json">

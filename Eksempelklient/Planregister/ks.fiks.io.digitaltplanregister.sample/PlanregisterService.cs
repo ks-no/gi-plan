@@ -124,15 +124,15 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            //else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentArealplan)
-            //{
-            //    string payload = File.ReadAllText("sampleResultatPlaner.json"); //Skulle inkludert en planbehandling i return? Trenger hvis vi skal teste på returPlanbhenaldinger true/false
-            //    string jsonSchemaName = FiksPlanMeldingtypeV2.HentArealplan;
-            //    string payloadJsonSchemaName = "";//Mangler skjema for payload? 
-            //    string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentArealplan)
+            {
+                string payload = File.ReadAllText("sampleResultatArealplan.json"); //Skulle inkludert en planbehandling i return? Trenger hvis vi skal teste på returPlanbhenaldinger true/false
+                string jsonSchemaName = FiksPlanMeldingtypeV2.HentArealplan;
+                string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatHentArealPlan;//Mangler skjema for payload? 
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatHentArealPlan;
 
-            //    HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
-            //}
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
             //else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.sjekkmidlertidigforbud.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
             //{
             //    string payload = File.ReadAllText(""); //Trenger å vite jsonschema for å lage payload.
@@ -252,15 +252,15 @@ namespace ks.fiks.io.digitaltplanregister.sample
                 HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             }
 
-            //else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.hentplanfil.v2")
-            //{
-            //    string payload = File.ReadAllText("samplePlanfil.json");
-            //    string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.hentplanfil.v2.schema.json";
-            //    string payloadJsonSchemaName = "no.ks.fiks.gi.plan.innsyn.planfil.v2.schema.json";
-            //    string returnMeldingstype = "no.ks.fiks.gi.plan.innsyn.planfil.v2";
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentPlanfil)
+            {
+                string payload = File.ReadAllText("samplePlanfil.json");
+                string jsonSchemaName = FiksPlanMeldingtypeV2.HentPlanfil;
+                string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatHentPlanfil;
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatHentPlanfil;
 
-            //    HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
-            //}
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
 
             //else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.planleggingigangsatt.v2")
             //{
@@ -279,10 +279,10 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
             //    HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
             //}
-            //else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.oppdatering.registrermidlertidigforbudmottiltak.v2")
+            //else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.RegistrerMidlertidigForbudMotTiltak)
             //{
             //    Console.WriteLine("Melding " + mottatt.Melding.MeldingId + " " + mottatt.Melding.MeldingType + " mottas...");
-            //    string jsonSchemaName = "no.ks.fiks.gi.plan.oppdatering.registrermidlertidigforbudmottiltak.v2.schema.json";
+            //    string jsonSchemaName = FiksPlanMeldingtypeV2.RegistrerMidlertidigForbudMotTiltak;
             //    string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatMottat;
 
             //    HandleRequestWithoutReturnPayload(mottatt, jsonSchemaName, returnMeldingstype);
