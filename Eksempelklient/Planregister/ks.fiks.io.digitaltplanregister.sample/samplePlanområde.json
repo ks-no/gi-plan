@@ -1,14 +1,14 @@
 ﻿{
-    "planområde": [
+    "planomraade": [
         {
-            "område": {
+            "omraade": {
                 "koordinatsystem": "koordinatsystem",
                 "ytreAvgrensning": "[ [ [ 0 , 0 ] , [ 3 , 6 ] , [ 6 , 1 ] , [ 0 , 0  ] ] ]"
             },
-            "vertikalnivå": "På grunnen/vannoverflate",
+            "vertikalnivaa": "På grunnen/vannoverflate",
             "vertikallag": {
                 "lag": "lag",
-                "referansehøyde": "23.32"
+                "referansehoeyde": "23.32"
             }
         }
     ]
