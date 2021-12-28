@@ -85,6 +85,9 @@
     <None Update="samplePlandokumenter.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="sampleResultatMidlertidigForbud.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="sampleResultatDispensasjoner.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

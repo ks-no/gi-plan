@@ -126,19 +126,19 @@ namespace ks.fiks.io.digitaltplanregister.sample
             }
             else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentArealplan)
             {
-                string payload = File.ReadAllText("sampleResultatArealplan.json"); //Skulle inkludert en planbehandling i return? Trenger hvis vi skal teste på returPlanbhenaldinger true/false
+                string payload = File.ReadAllText("sampleResultatArealplan.json");
                 string jsonSchemaName = FiksPlanMeldingtypeV2.HentArealplan;
-                string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatHentArealplan;//Mangler skjema for payload? 
+                string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatHentArealplan;
                 string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatHentArealplan;
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            //else if (mottatt.Melding.MeldingType == "no.ks.fiks.gi.plan.innsyn.sjekkmidlertidigforbud.v2") // Sjekke med Tor Kjetil om korrekt meldingstype
+            //else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.SjekkMidlertidigForbud)
             //{
-            //    string payload = File.ReadAllText(""); //Trenger å vite jsonschema for å lage payload.
-            //    string jsonSchemaName = "no.ks.fiks.gi.plan.innsyn.sjekkmidlertidigforbud.v2.schema.json";
-            //    string payloadJsonSchemaName = "";//Mangler skjema for payload? 
-            //    string returnMeldingstype = "no.ks.fiks.gi.plan.oppdatering.mottatt.v2";
+            //    string payload = File.ReadAllText("sampleResultatMidlertidigForbud.json");
+            //    string jsonSchemaName = FiksPlanMeldingtypeV2.SjekkMidlertidigForbud;
+            //    string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatSjekkMidlertidigForbud; 
+            //    string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatSjekkMidlertidigForbud;
 
             //    HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             //}
@@ -189,6 +189,15 @@ namespace ks.fiks.io.digitaltplanregister.sample
                 string attachment = "Oversiktskart.pdf";
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype, attachment);
+            }
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.FinnPlanerForOmraade)
+            {
+                string payload = File.ReadAllText("sampleResultatPlaner.json");
+                string jsonSchemaName = FiksPlanMeldingtypeV2.FinnPlanerForOmraade;
+                string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatFinnPlanerForOmraade;
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatFinnPlanerForOmraade;
+
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
             else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.HentAktoerer)
             {
