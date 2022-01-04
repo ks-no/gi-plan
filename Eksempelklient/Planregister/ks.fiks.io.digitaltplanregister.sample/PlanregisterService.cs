@@ -315,7 +315,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
                         {
                             if (asiceReadEntry.FileName.Contains("payload.json"))
                             {
-                                errorMessages = ValidateJsonFile(new StreamReader(entryStream).ReadToEnd(), Path.Combine("Schema", jsonSchemaName, ".schema.json"));
+                                errorMessages = ValidateJsonFile(new StreamReader(entryStream).ReadToEnd(), Path.Combine("Schema", jsonSchemaName + ".schema.json"));
                             }
                             else
                                 Console.WriteLine("Mottatt vedlegg: " + asiceReadEntry.FileName);
@@ -364,7 +364,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
                             if (asiceReadEntry.FileName.Contains("payload.json"))
                             {
                                 //var content = new StreamReader(entryStream).ReadToEnd();
-                                errorMessages = ValidateJsonFile(new StreamReader(entryStream).ReadToEnd(), Path.Combine("Schema", jsonSchemaName, ".schema.json"));
+                                errorMessages = ValidateJsonFile(new StreamReader(entryStream).ReadToEnd(), Path.Combine("Schema", jsonSchemaName + ".schema.json"));
                             }
                             else
                                 Console.WriteLine("Mottatt vedlegg: " + asiceReadEntry.FileName);
@@ -374,7 +374,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
                 if (errorMessages[0].Count == 0)
                 {
-                    errorMessages = ValidateJsonFile(payload, Path.Combine("Schema", payloadJsonSchemaName, ".schema.json"));
+                    errorMessages = ValidateJsonFile(payload, Path.Combine("Schema", payloadJsonSchemaName + ".schema.json"));
 
                     if (errorMessages[0].Count == 0)
                     {
