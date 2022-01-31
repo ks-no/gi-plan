@@ -25,6 +25,7 @@
     <None Remove="samplePlanområde.json" />
     <None Remove="sampleResultatPlanerForAdresse.json" />
     <None Remove="sampleResultatPlanerForMatrikkelenhet.json" />
+    <None Remove="Schema\FinnPlanerForAdresse.png" />
     <None Remove="Schema\no.ks.fiks.gi.plan.v2.innsyn.planbehandlinger.resultat.schema.json" />
     <None Remove="Schema\Oversiktskart.pdf" />
   </ItemGroup>
@@ -54,6 +55,7 @@
     <Content Include="Oversiktskart.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Schema\FinnPlanerForAdresse.png" />
   </ItemGroup>
 
   <ItemGroup>
