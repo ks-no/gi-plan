@@ -23,6 +23,7 @@
     <None Remove="sampleBbox.json" />
     <None Remove="sampleKodeliste.json" />
     <None Remove="samplePlanområde.json" />
+    <None Remove="sampleResultatPlanerForAdresse.json" />
     <None Remove="sampleResultatPlanerForMatrikkelenhet.json" />
     <None Remove="Schema\no.ks.fiks.gi.plan.v2.innsyn.planbehandlinger.resultat.schema.json" />
     <None Remove="Schema\Oversiktskart.pdf" />
@@ -39,6 +40,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="sampleAktører.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sampleResultatPlanerForAdresse.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
