@@ -1,4 +1,4 @@
-﻿using Ks.Fiks.Maskinporten.Client;
+using Ks.Fiks.Maskinporten.Client;
 using KS.Fiks.ASiC_E;
 using KS.Fiks.IO.Client;
 using KS.Fiks.IO.Client.Configuration;
@@ -383,14 +383,14 @@ namespace ks.fiks.io.digitaltplanregister.sample
                         if (attachmentPath != null)
                         {
                             var bytes = File.ReadAllBytes(attachmentPath);
-                            payloads.Add(new StringPayload(payload, "resultat.json"));
+                            payloads.Add(new StringPayload(payload, "payload.json"));
                             payloads.Add(new FilePayload(attachmentPath));
                             //payloads.Add(new StringPayload(Convert.ToBase64String(bytes), attachmentPath));
                             svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payloads).Result;
                         }
                         else
                         {
-                            svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payload, "resultat.json").Result;
+                            svarmsg = mottatt.SvarSender.Svar(returnMeldingstype, payload, "payload.json").Result;
                         }
                         mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
                     }
