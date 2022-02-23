@@ -1,4 +1,4 @@
-using Ks.Fiks.Maskinporten.Client;
+﻿using Ks.Fiks.Maskinporten.Client;
 using KS.Fiks.ASiC_E;
 using KS.Fiks.IO.Client;
 using KS.Fiks.IO.Client.Configuration;
@@ -133,15 +133,15 @@ namespace ks.fiks.io.digitaltplanregister.sample
 
                 HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
             }
-            //else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.SjekkMidlertidigForbud)
-            //{
-            //    string payload = File.ReadAllText("sampleResultatMidlertidigForbud.json");
-            //    string jsonSchemaName = FiksPlanMeldingtypeV2.SjekkMidlertidigForbud;
-            //    string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatSjekkMidlertidigForbud; 
-            //    string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatSjekkMidlertidigForbud;
+            else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.SjekkMidlertidigForbud)
+            {
+                string payload = File.ReadAllText("sampleResultatMidlertidigForbud.json");
+                string jsonSchemaName = FiksPlanMeldingtypeV2.SjekkMidlertidigForbud;
+                string payloadJsonSchemaName = FiksPlanMeldingtypeV2.ResultatSjekkMidlertidigForbud;
+                string returnMeldingstype = FiksPlanMeldingtypeV2.ResultatSjekkMidlertidigForbud;
 
-            //    HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
-            //}
+                HandleRequestWithReturnPayload(mottatt, jsonSchemaName, payload, payloadJsonSchemaName, returnMeldingstype);
+            }
             else if (mottatt.Melding.MeldingType == FiksPlanMeldingtypeV2.OpprettArealplan)
             {
                 string payload = File.ReadAllText("sampleNyPlanident.json");
@@ -426,6 +426,9 @@ namespace ks.fiks.io.digitaltplanregister.sample
             {
                 JObject jObject = JObject.Parse(jsonString);
                 JSchema schema = JSchema.Parse(file.ReadToEnd());
+
+                Console.WriteLine(schema.ToString());
+
                 //TODO:Skille mellom errors og warnings hvis det er 
                 jObject.Validate(schema, (o, a) =>
                 {
