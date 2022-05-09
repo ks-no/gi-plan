@@ -3,7 +3,9 @@ using KS.Fiks.ASiC_E;
 using KS.Fiks.IO.Client;
 using KS.Fiks.IO.Client.Configuration;
 using KS.Fiks.IO.Client.Models;
+using KS.Fiks.IO.Client.Models.Feilmelding;
 using KS.Fiks.Plan.Client.Models;
+using KS.Fiks.Protokoller.V1.Models.Feilmelding;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Linq;
@@ -332,14 +334,14 @@ namespace ks.fiks.io.digitaltplanregister.sample
                 else
                 {
                     Console.WriteLine("Feil i validering med jsonschema: ", jsonSchemaName);
-                    mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
+                    mottatt.SvarSender.Svar(FeilmeldingType.Ugyldigforespørsel, String.Join("\n ", errorMessages[0]), "feil.txt");
                     Console.WriteLine(String.Join("\n ", errorMessages[0]));
                     mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
                 }
             }
             else
             {
-                var svarmsg = mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", "Meldingen mangler innhold", "feil.txt").Result;
+                var svarmsg = mottatt.SvarSender.Svar(FeilmeldingType.Ugyldigforespørsel, "Meldingen mangler innhold", "feil.txt").Result;
                 Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " Meldingen mangler innhold");
 
                 mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
@@ -397,7 +399,7 @@ namespace ks.fiks.io.digitaltplanregister.sample
                     else
                     {
                         Console.WriteLine("Feil i validering med jsonschema: ", payloadJsonSchemaName);
-                        mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
+                        mottatt.SvarSender.Svar(FeilmeldingType.Ugyldigforespørsel, String.Join("\n ", errorMessages[0]), "feil.txt");
                         Console.WriteLine(String.Join("\n ", errorMessages[0]));
                         mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
                     }
@@ -405,14 +407,14 @@ namespace ks.fiks.io.digitaltplanregister.sample
                 else
                 {
                     Console.WriteLine("Feil i validering med jsonschema: ", jsonSchemaName);
-                    mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", String.Join("\n ", errorMessages[0]), "feil.txt");
+                    mottatt.SvarSender.Svar(FeilmeldingType.Ugyldigforespørsel, String.Join("\n ", errorMessages[0]), "feil.txt");
                     Console.WriteLine(String.Join("\n ", errorMessages[0]));
                     mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
                 }
             }
             else
             {
-                var svarmsg = mottatt.SvarSender.Svar("no.ks.fiks.kvittering.ugyldigforespørsel.v1", "Meldingen mangler innhold", "feil.txt").Result;
+                var svarmsg = mottatt.SvarSender.Svar(FeilmeldingType.Ugyldigforespørsel, "Meldingen mangler innhold", "feil.txt").Result;
                 Console.WriteLine("Svarmelding " + svarmsg.MeldingId + " " + svarmsg.MeldingType + " Meldingen mangler innhold");
 
                 mottatt.SvarSender.Ack(); // Ack message to remove it from the queue
